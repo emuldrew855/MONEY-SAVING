@@ -1,14 +1,36 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
-  <title>Demo</title>
+  <title>MONEYSAVING</title>
   <base href="/">
+  <link href="https://unpkg.com/bootstrap@4.0.0-beta/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/angular-calendar@0.21.1/dist/css/angular-calendar.css" rel="stylesheet">
 
+  <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyA6371-WtxQRCXGeO58T7RE-OU5R68jWkc",
+      authDomain: "money-saving-de377.firebaseapp.com",
+      databaseURL: "https://money-saving-de377.firebaseio.com",
+      projectId: "money-saving-de377",
+      storageBucket: "",
+      messagingSenderId: "752042678472"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script src="https://unpkg.com/zone.js@0.8.17"></script>
+  <script src="https://unpkg.com/zone.js@0.8.17/dist/long-stack-trace-zone.js"></script>
+  <script src="https://unpkg.com/reflect-metadata@0.1.10"></script>
+  <script src="https://unpkg.com/systemjs@0.19/dist/system.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
+
 <body>
   <app-root></app-root>
 </body>
+
 </html>

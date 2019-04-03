@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
-
 import { FirebaseService } from './shared/firebase.service';
 
 @Component({

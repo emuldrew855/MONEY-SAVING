@@ -1,142 +1,6 @@
-<!-- Events Code -->
-<br>
-<br><br>
-<div>
-  <button class="btn btn-success" (click)="toggleShowInputDetails()"> 
-  {{!showInputDetails ? 'Add' : 'Hide' }} Input
-</button>
-  <button class="btn btn-danger" (click)="toggleShowOutputDetails()"> 
-    {{!showOutputDetails ? 'Add' : 'Hide' }} Output
-  </button>
-  <div>
-
-    <div class="alert alert-info">
-      Click on a day on the view.
-      <strong *ngIf="clickedDate">You clicked on this day: {{ clickedDate | date:'medium' }}</strong>
-    </div>
-
-    <!-- Output Details -->
-    <div *ngIf="showOutputDetails">
-      <h3>
-        Output events
-        <button class="btn btn-primary pull-right" (click)="addOutputEvent()">
-        Add new
-      </button>
-        <div class="clearfix"></div>
-      </h3>
-
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Amount</th>
-            <th>Reason</th>
-            <th>Start Time</th>
-            <th>End Time</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr *ngFor="let event of outputEvents; let index = index">
-            <td>
-              <input type="text" class="form-control" [(ngModel)]="event.title" (keyup)="refresh.next()">
-            </td>
-
-            <td>
-              <input type="text" [(ngModel)]="event.amount" (change)="refresh.next()">
-            </td>
-
-            <td>
-              <select [(ngModel)]="event.type">
-                  <option *ngFor="let type of outputTypes" [ngValue]="type"> {{type}}</option>
-                 </select>
-            </td>
-
-            <td>
-              <mwl-demo-utils-date-time-picker [(ngModel)]="event.start" (ngModelChange)="refresh.next()" placeholder="Not set">
-              </mwl-demo-utils-date-time-picker>
-            </td>
-
-            <td>
-                <mwl-demo-utils-date-time-picker [(ngModel)]="event.end" (ngModelChange)="refresh.next()" placeholder="Not set">
-                </mwl-demo-utils-date-time-picker>
-              </td>
-
-            <td>
-              <button class="btn btn-danger" (click)="outputEvents.splice(index, 1);" (click)="deleteEvents(event); referesh.next()">
-               Delete
-               </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <br> <br> <br>
-    </div>
-
-    <!-- Input Details -->
-    <div *ngIf="showInputDetails">
-      <h3>
-        Input events
-        <button class="btn btn-primary pull-right" (click)="addInputEvent($event.day)">
-          Add new
-        </button>
-        <div class="clearfix"></div>
-      </h3>
-
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Amount</th>
-            <th>Reason</th>
-            <th>Start Time</th>
-            <th>End Time</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr *ngFor="let event of inputEvents; let index = index">
-            <td>
-              <input type="text" class="form-control" [(ngModel)]="event.title" (keyup)="refresh.next()">
-            </td>
-
-            <td>
-              <input type="text" [(ngModel)]="event.amount" (change)="refresh.next()" placeholder="£">
-            </td>
-
-            <td>
-              <select [(ngModel)]="event.type">
-                  <option *ngFor="let type of inputTypes" [ngValue]="type"> {{type}}</option>
-                </select>
-            </td>
-
-            <td>
-              <mwl-demo-utils-date-time-picker [(ngModel)]="event.start" (ngModelChange)="refresh.next()" placeholder="Not set">
-              </mwl-demo-utils-date-time-picker>
-            </td>
-
-            <td>
-              <mwl-demo-utils-date-time-picker [(ngModel)]="event.end" (ngModelChange)="refresh.next()" placeholder="Not set">
-              </mwl-demo-utils-date-time-picker>
-            </td>
-
-            <td>
-              <button class="btn btn-danger" (click)="deleteEvents(event);" (click)="inputEvents.splice(index, 1);">
-                 Delete
-                 </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <br> <br> <br>
-    </div>
-
-
-
-    <!-- Calender Code -->
-    <br> <br>
+ <!-- Calender Code -->
+    <br>
+    <br>
     <div class="row text-center">
       <div class="col-md-4">
         <div class="btn-group">
@@ -173,17 +37,9 @@
 
     <!-- Choose Month Code -->
     <div [ngSwitch]="view">
-      <mwl-calendar-month-view *ngSwitchCase="'month'" 
-        [viewDate]="viewDate" 
-        [events]="events" 
-        [refresh]="refresh" 
-        (beforeViewRender)="beforeMonthViewRender($event)" 
-        [activeDayIsOpen]="activeDayIsOpen"
-        (dayClicked)="dayClicked($event.day)" 
-        (eventClicked)="handleEvent('Clicked', $event.event)" 
-        (eventTimesChanged)="eventTimesChanged($event)"
-        (dayClicked)="clickedDate = $event.day.date" 
-        [cellTemplate]="customCellTemplate">
+      <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (beforeViewRender)="beforeMonthViewRender($event)"
+        [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)" (eventClicked)="handleEvent('Clicked', $event.event)"
+        (eventTimesChanged)="eventTimesChanged($event)" (dayClicked)="clickedDate = $event.day.date" [cellTemplate]="customCellTemplate">
       </mwl-calendar-month-view>
 
       <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
@@ -198,12 +54,14 @@
 
     <!-- Custom Template -->
     <ng-template #customCellTemplate let-day="day" let-locale="locale">
-      <div class ="call-cell cal-day-cell cal-past"> 
-          <div *ngIf="day.date.getDay() === 0">
-              <small style="margin: 5px">Week Spend: £ {{day.weekCost}} </small>
-          </div>
+      <div class="call-cell cal-day-cell cal-past">
+        <div *ngIf="day.date.getDay() === 0">
+          <small style="margin: 5px">Week Spend: £ {{day.weekCost}} </small>
+        </div>
       </div>
-      <div class="cal-cell cal-day-cell cal-past cal-in-good-month cal-has-events" *ngIf="day.totalCost > 0">
+
+      <!--Regular Cell Code-->
+      <div class="cal-cell cal-day-cell cal-past cal-has-events">
         <div class="cal-cell-top">
           <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
           <span class="cal-day-number">{{ day.date | date:'dd'}}</span>
@@ -220,55 +78,23 @@
         </div>
       </div>
 
-      <div class="cal-cell cal-day-cell cal-past cal-in-month cal-has-events" *ngIf="day.totalCost === 0">
-        <div class="cal-cell-top">
-          <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
-          <span class="cal-day-number">{{ day.date | date:'dd'}}</span>
-          <br>
-          <br>
-          <small style="margin: 5px">Day Net Spend: £ {{day.totalCost}} </small>
+      <!-- Modal Code -->
+      <ng-template #modalContent let-close="close">
+        <div class="modal-header">
+          <h5 class="modal-title">{{modalData?.event.title}}</h5>
         </div>
-        <div class="cal-events" *ngIf="day.events.length > 0">
-          <div class="cal-event" *ngFor="let event of day.events" [style.backgroundColor]="event.color.primary" [ngClass]="event?.cssClass"
-            (mouseenter)="highlightDay.emit({event: event})" (mouseleave)="unhighlightDay.emit({event: event})" [mwlCalendarTooltip]="event.title | calendarEventTitle:'monthTooltip':event"
-            [tooltipPlacement]="tooltipPlacement" [tooltipEvent]="event" [tooltipTemplate]="tooltipTemplate" [tooltipAppendToBody]="tooltipAppendToBody"
-            mwlDraggable (mwlClick)="onEventClick($event, event)">
+        <div class="modal-body">
+          <div>
+            <span class="emp"> Type: </span> {{modalData?.event.type}}
+            <span class="emp">
+              <br> Cost: </span> £ {{modalData?.event.amount}}
+            <span class="emp">
+              <br> Start Date: </span> {{modalData?.event.start | date:'medium'}}
+            <span class="emp">
+              <br> End Date: </span> {{modalData?.event.end | date:'medium'}}
           </div>
         </div>
-      </div>
-
-      <div class="cal-cell cal-day-cell cal-past cal-in-bad-month cal-has-events" *ngIf="day.totalCost < 0">
-        <div class="cal-cell-top">
-          <span class="cal-bad-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
-          <span class="cal-day-number">{{ day.date | date:'dd'}}</span>
-          <br>
-          <small style="margin: 5px">Day Net Spend: £ {{day.totalCost}} </small>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
         </div>
-        <div class="cal-events" *ngIf="day.events.length > 0">
-          <div class="cal-event" *ngFor="let event of day.events" [style.backgroundColor]="event.color.primary" [ngClass]="event?.cssClass"
-            (mouseenter)="highlightDay.emit({event: event})" (mouseleave)="unhighlightDay.emit({event: event})" [mwlCalendarTooltip]="event.title | calendarEventTitle:'monthTooltip':event"
-            [tooltipPlacement]="tooltipPlacement" [tooltipEvent]="event" [tooltipTemplate]="tooltipTemplate" [tooltipAppendToBody]="tooltipAppendToBody"
-            mwlDraggable (mwlClick)="onEventClick($event, event)">
-          </div>
-        </div>
-      </div>
-    </ng-template>
-
-
-    <!-- Modal Code -->
-    <ng-template #modalContent let-close="close">
-      <div class="modal-header">
-        <h5 class="modal-title">{{modalData?.event.title}}</h5>
-      </div>
-      <div class="modal-body">
-        <div>
-          <span class="emp"> Type: </span> {{modalData?.event.type}}
-          <span class="emp"> <br> Cost: </span> £ {{modalData?.event.amount}}
-          <span class="emp"> <br> Start Date: </span> {{modalData?.event.start | date:'medium'}}
-          <span class="emp"> <br> End Date: </span> {{modalData?.event.end | date:'medium'}}
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
-      </div>
-    </ng-template>
+      </ng-template>

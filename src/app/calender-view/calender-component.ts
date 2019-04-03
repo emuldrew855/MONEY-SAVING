@@ -1,132 +1,88 @@
-import { Component, ChangeDetectionStrategy, ViewChild, TemplateRef, OnInit, DoCheck } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Component, ChangeDetectionStrategy, ViewChild, TemplateRef, OnInit, DoCheck, Input, Output, EventEmitter } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CalendarEvent, CalendarEventAction, CalendarMonthViewDay } from 'angular-calendar';
+import { addDays, isSameDay, isSameMonth } from 'date-fns';
 import { Subject } from 'rxjs';
-import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarMonthViewDay } from 'angular-calendar';
-import {
-    startOfDay, endOfDay, subDays, addDays,
-    endOfMonth, isSameDay, isSameMonth, addHours
-} from 'date-fns';
-import { MonthViewDay } from 'calendar-utils';
 
-const colors: any = {
-    red: {
-        primary: '#e74c3c',
-        secondary: '#FAE3E3'
-    },
-    grey: {
-        primary: '#e6e6e6',
-        secondary: '#cccccc'
-    },
-    yellow: {
-        primary: '#e3bc08',
-        secondary: '#FDF1BA'
-    },
-    green: {
-        primary: '#2ECC71',
-        secondary: '#27ae60'
-    }
-};
+import { SharedService } from '../shared/shared.service';
+
 
 @Component({
     selector: 'app-calender-view',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    templateUrl: 'calender-view.html',
-    styleUrls: ['calender-view.css']
+    templateUrl: 'calender-view.html'
 })
 
 export class CalenderComponent implements OnInit, DoCheck {
     @ViewChild('modalContent') modalContent: TemplateRef<any>;
-    eventId = 3;
+    refresh: Subject<any> = new Subject();
     view = 'month';
     dayTotal = 0;
     weekTotal = 0;
     totalInput = 0;
     totalOutput = 0;
     viewDate: Date = new Date();
-    showOutputDetails = false;
-    showInputDetails = false;
     activeDayIsOpen = true;
-    todaysDate = Date.now();
-    inputEvents: CalendarEvent[] = [];
-    outputEvents: CalendarEvent[] = [];
+    @Output() outputDate = new EventEmitter<Date>();
+    @Input() events: CalendarEvent[] = [];
+
     modalData: {
         action: string;
         event: CalendarEvent;
     };
-    inputTypes: String[] = ['Work', 'Loan', 'Gift'];
-    outputTypes: String[] = ['Transport', 'Bills', 'Socialising', 'Food', 'Direct Debits', 'Shopping', 'Other'];
 
-    actions: CalendarEventAction[] = [
-        {
-            label: '<i class="fa fa-fw fa-pencil"></i>',
-            onClick: ({ event }: { event: CalendarEvent }): void => {
-                this.handleEvent('Edited', event);
-            }
-        },
-        {
-            label: '<i class="fa fa-fw fa-times"></i>',
-            onClick: ({ event }: { event: CalendarEvent }): void => {
-                this.events = this.events.filter(iEvent => iEvent !== event);
-                this.handleEvent('Deleted', event);
-            }
-        }
-    ];
-
-    refresh: Subject<any> = new Subject();
-
-    events: CalendarEvent[] = [
-        {
-            id: 1,
-            start: new Date('September 17, 2017'),
-            end: new Date('September 17, 2017'),
-            title: 'A 3 day event',
-            type: 'Transport',
-            amount: 10,
-            color: colors.red,
-            actions: this.actions
-        },
-        {
-            id: 2,
-            start: new Date('September 10, 2017'),
-            end: new Date('September 10, 2017'),
-            title: 'Meal with Lauren',
-            type: 'Socialising',
-            amount: 10,
-            color: colors.red,
-            actions: this.actions
-        },
-        {
-            id: 3,
-            start: new Date('September 10, 2017'),
-            end: new Date('September 10, 2017'),
-            title: 'Wednesday Shift',
-            type: 'Money Earnt',
-            amount: 10,
-            color: colors.green,
-            actions: this.actions
-        },
-        {
-            id: 4,
-            start: new Date('September 9, 2017'),
-            end: new Date('September 9, 2017'),
-            title: 'Saturday Shift',
-            type: 'Money Earnt',
-            amount: 10,
-            color: colors.green,
-            actions: this.actions
-        },
-    ];
-    constructor(private modal: NgbModal) { }
-
-    ngOnInit() {
+    handleEvent(action: string, event: CalendarEvent): void {
+        this.modalData = { event, action };
+        this.modal.open(this.modalContent, { size: 'lg' });
     }
 
-    ngDoCheck() {
-        // this.refresh.next();
+    findWeekTotal(dayDate: CalendarMonthViewDay) {
+        let totalInput = 0;
+        let totalOutput = 0;
+
+        for (let i = 0; i < this.events.length; i++) {
+            if (this.events[i].start > addDays(dayDate.date, -7) && this.events[i].start <= dayDate.date) {
+                if (this.events[i].color === this.sharedService.colors.green) {
+                    totalInput = totalInput + this.events[i].amount;
+                } else if (this.events[i].color === this.sharedService.colors.red) {
+                    totalOutput = totalOutput - this.events[i].amount;
+                }
+            }
+        }
+        this.weekTotal =  (totalInput + totalOutput);
+        dayDate.weekCost = this.weekTotal;
+    }
+
+    beforeMonthViewRender({ body }: { body: CalendarMonthViewDay[] }): void {
+        body.forEach(day => {
+            let totalInput = 0;
+            let totalOutput = 0;
+            day.totalCost = 0;
+            this.dayTotal = 0;
+
+            for (let i = 0; i < this.events.length; i++) {
+                if (day.date.getDate() === this.events[i].start.getDate()) {
+                    if (this.events[i].color === this.sharedService.colors.green) {
+                        totalInput = totalInput + this.events[i].amount;
+                    } else if (this.events[i].color === this.sharedService.colors.red) {
+                        totalOutput = totalOutput - this.events[i].amount;
+                    }
+                }
+            }
+            this.dayTotal = (totalInput + totalOutput);
+            day.totalCost = this.dayTotal;
+            if (day.date.getDay() === 0) {
+                this.weekTotal = 0;
+                this.findWeekTotal(day);
+                console.log(day.date + ' ' + day.weekCost);
+            }
+        });
     }
 
     dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+        this.viewDate = date;
+        this.outputDate.emit(this.viewDate);
+        console.log('Date Clicked: ' + date);
         if (isSameMonth(date, this.viewDate)) {
             if (
                 (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
@@ -135,135 +91,16 @@ export class CalenderComponent implements OnInit, DoCheck {
                 this.activeDayIsOpen = false;
             } else {
                 this.activeDayIsOpen = true;
-                this.viewDate = date;
             }
         }
     }
+    constructor(private modal: NgbModal, private sharedService: SharedService) {
+    }
 
-    eventTimesChanged({
-        event,
-        newStart,
-        newEnd
-        }: CalendarEventTimesChangedEvent): void {
-        event.start = newStart;
-        event.end = newEnd;
-        this.handleEvent('Dropped or resized', event);
+    ngOnInit() {
+    }
+
+    ngDoCheck() {
         this.refresh.next();
     }
-
-    handleEvent(action: string, event: CalendarEvent): void {
-        console.log('Event: ' + event);
-        this.modalData = { event, action };
-        this.modal.open(this.modalContent, { size: 'lg' });
-    }
-
-    addInputEvent(): void {
-        this.eventId++;
-        const eventColor = colors.green;
-        this.inputEvents.push({
-            id: this.eventId,
-            title: 'New event',
-            start: startOfDay(Date.now()),
-            end: endOfDay(Date.now()),
-            color: eventColor,
-            type: 'Transport',
-            amount: 10,
-            draggable: true,
-            resizable: {
-                beforeStart: true,
-                afterEnd: true
-            }
-        });
-        let x = 0;
-        for (let i = 0; i < this.inputEvents.length; i++) {
-            x = i;
-        }
-        this.events.push(this.inputEvents[x]);
-        this.refresh.next();
-    }
-
-    addOutputEvent(): void {
-        const eventColor = colors.red;
-        this.eventId++;
-        this.outputEvents.push({
-            id: this.eventId,
-            title: 'New event',
-            start: startOfDay(new Date()),
-            end: endOfDay(new Date()),
-            color: eventColor,
-            type: 'Transport',
-            amount: 10,
-            draggable: true,
-            resizable: {
-                beforeStart: true,
-                afterEnd: true
-            }
-        });
-
-        let x = 0;
-        for (let i = 0; i < this.outputEvents.length; i++) {
-            x = i;
-
-        }
-        this.events.push(this.outputEvents[x]);
-        this.refresh.next();
-    }
-
-    deleteEvents(event: CalendarEvent) {
-        for (let i = 0; i < this.events.length; i++) {
-            if (event.id === this.events[i].id) {
-                this.events.splice(i);
-                this.refresh.next();
-            }
-        }
-    }
-
-    toggleShowOutputDetails() {
-        this.showOutputDetails = !this.showOutputDetails;
-    }
-
-    toggleShowInputDetails() {
-        this.showInputDetails = !this.showInputDetails;
-    }
-
-    beforeMonthViewRender({ body }: { body: CalendarMonthViewDay[] }): void {
-        this.weekTotal = 0;
-        body.forEach(day => {
-            let weekDate = new Date('September 3, 2017');
-            let totalInput = 0;
-            let totalOutput = 0;
-            day.totalCost = 0;
-            day.weekCost = 0;
-
-
-            for (let i = 0; i < this.events.length; i++) {
-                if (day.date.getDate() === this.events[i].start.getDate()) {
-                    if (this.events[i].color === colors.green) {
-                        totalInput = totalInput + this.events[i].amount;
-                    } else if (this.events[i].color === colors.red) {
-                        totalOutput = totalOutput - this.events[i].amount;
-                    }
-                }
-                this.dayTotal = (totalInput + totalOutput);
-                day.totalCost = this.dayTotal;
-            }
-            this.findWeekTotal(day, weekDate);
-            console.log('');
-            this.findWeekTotal(day, addDays(weekDate, 7));
-            console.log('');
-            this.findWeekTotal(day, addDays(weekDate, 14));
-
-        });
-    }
-
-    findWeekTotal(dayDate: CalendarMonthViewDay, weekDate: Date) {
-        if (dayDate.date > weekDate && dayDate.date <= addDays(weekDate, 7)) {
-            console.log('Day: ' + dayDate.date + ' Day Cost: £' + dayDate.totalCost);
-            this.weekTotal = this.weekTotal + dayDate.totalCost;
-            console.log('Week Cost: £' + this.weekTotal);
-            console.log(dayDate.date + ' ' + dayDate.weekCost);
-        }
-        dayDate.weekCost = this.weekTotal;
-    }
-
 }

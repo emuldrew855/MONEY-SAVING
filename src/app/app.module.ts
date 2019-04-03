@@ -5,14 +5,19 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { environment } from '../environments/environment';
-
+import { firebaseConfig } from '../../firebase.config';
 import { AppComponent } from './app.component';
 import { CalendarModule } from 'angular-calendar';
+
 import { CalenderComponent } from './calender-view/calender-component';
-import { DateTimePickerComponent } from './calender-view/date-time-picker/date-time-picker.component';
 import { FirebaseService } from './shared/firebase.service';
+import { SharedService} from '../app/shared/shared.service';
 import { SharedModule } from './shared/shared.module';
+import { EventAdderComponent } from '../app/event-adder/event-adder.component';
+import { NavBarComponent } from '../app/nav-bar/nav-bar.component';
+
+import 'flatpickr/dist/flatpickr.css';
+import { FlatpickrModule } from 'angularx-flatpickr';
 import {
   NgbDatepickerModule,
   NgbTimepickerModule
@@ -24,21 +29,21 @@ import {
   declarations: [
     AppComponent,
     CalenderComponent,
-    DateTimePickerComponent
+    EventAdderComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
     SharedModule,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.firebase, 'my-app-name'), // imports firebase/app needed for everything
+    AngularFireModule.initializeApp(firebaseConfig), // imports firebase/app needed for everything
     AngularFireDatabaseModule, // imports firebase/database, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     NgbModalModule.forRoot(),
-    NgbDatepickerModule.forRoot(),
-    NgbTimepickerModule.forRoot(),
+    FlatpickrModule.forRoot(),
     CalendarModule.forRoot()
   ],
-  providers: [FirebaseService],
+  providers: [FirebaseService, SharedService],
   exports: [SharedModule],
   bootstrap: [AppComponent]
 })

@@ -2,21 +2,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule} from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { firebaseConfig } from '../../firebase.config';
-import { AppComponent } from './app.component';
 import { CalendarModule } from 'angular-calendar';
-
-import { CalenderComponent } from './calender-view/calender-component';
-import { FirebaseService } from './shared/firebase.service';
-import { SharedService} from '../app/shared/shared.service';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
 import { SharedModule } from './shared/shared.module';
+import { AppRoutingModule } from './app.routes';
+
+import { SharedService} from '../app/shared/shared.service';
+import { AppComponent } from './app.component';
+import { CalenderComponent } from './calender-view/calender-component';
 import { EventAdderComponent } from '../app/event-adder/event-adder.component';
 import { NavBarComponent } from '../app/nav-bar/nav-bar.component';
 import { NewsComponent } from '../app/news-view/new-component';
-import { AppRoutingModule } from './app.routes';
+import { AboutViewComponent } from '../app/about-view/about-view.component';
 
 import 'flatpickr/dist/flatpickr.css';
 import { FlatpickrModule } from 'angularx-flatpickr';
@@ -30,24 +28,24 @@ import {
 @NgModule({
   declarations: [
     AppComponent,
+    AboutViewComponent,
     CalenderComponent,
     EventAdderComponent,
     NavBarComponent,
     NewsComponent
   ],
   imports: [
+    MatCardModule,
+    MatButtonModule,
     AppRoutingModule,
     BrowserModule,
     SharedModule,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(firebaseConfig), // imports firebase/app needed for everything
-    AngularFireDatabaseModule, // imports firebase/database, only needed for database features
-    AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     NgbModalModule.forRoot(),
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot()
   ],
-  providers: [FirebaseService, SharedService],
+  providers: [SharedService],
   exports: [SharedModule],
   bootstrap: [AppComponent]
 })

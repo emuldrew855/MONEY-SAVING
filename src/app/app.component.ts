@@ -12,32 +12,5 @@ export class AppComponent {
   items: AngularFireList<String>;
   response: string;
 
-  constructor(db: AngularFireDatabase, private firebaseService: FirebaseService) {
-    this.items = db.list('/items');
-  }
-
-  onSubmit(title: string) {
-    console.log('Send Info Method');
-    this.firebaseService.addEvent(title).subscribe(response => this.response = JSON.stringify(response),
-      (err) => {
-        // Error Messages
-        console.log('This did not work');
-      }, () => {
-        // Success Messages
-        console.log('This worked');
-      });
-  }
-
-  onGetEvent() {
-    console.log('Get Info Method');
-    this.firebaseService.getEvent().subscribe(response => this.response = JSON.stringify(response),
-      (err) => {
-        // Error Messages
-        console.log('This did not work!');
-      }, () => {
-        // Success Messages
-        console.log('This worked');
-      });
-  }
 
 }

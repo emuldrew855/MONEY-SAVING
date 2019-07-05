@@ -42,7 +42,7 @@
         (eventTimesChanged)="eventTimesChanged($event)" (dayClicked)="clickedDate = $event.day.date" [cellTemplate]="customCellTemplate">
       </mwl-calendar-month-view>
 
-      <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
+      <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events" [weekStartsOn]="1" [refresh]="refresh"  (eventClicked)="handleEvent('Clicked', $event.event)"
         (eventTimesChanged)="eventTimesChanged($event)" (dayHeaderClicked)="clickedDate = $event.day.date">
       </mwl-calendar-week-view>
 

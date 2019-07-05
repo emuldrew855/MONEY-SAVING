@@ -7,12 +7,12 @@
 
   <button *ngIf="viewDate"
     class="btn btn-success"
-    (click)="openLg(input)">
+    (click)="openLg(input)"> Add Input
   </button>
   &nbsp;&nbsp;
   <button *ngIf="viewDate"
     class="btn btn-danger"
-    (click)="openLg(output)">
+    (click)="openLg(output)"> Add Output
   </button>
 
   <!-- Output Details -->
@@ -224,10 +224,10 @@
             (click)="addOutputEvent()">
             Add new
           </button>
-    
+
           <div class="clearfix"></div>
         </h3>
-    
+
         <table class="table table-bordered">
           <thead>
             <tr>
@@ -239,7 +239,7 @@
               <th>Delete</th>
             </tr>
           </thead>
-    
+
           <tbody>
             <tr *ngFor="let event of outputEvents; let index = index">
               <td>
@@ -248,21 +248,21 @@
                   [(ngModel)]="event.title"
                   (keyup)="refresh.next()">
               </td>
-    
+
               <td>
                 <input type="text"
                   [(ngModel)]="event.amount"
                   (change)="refresh.next()">
               </td>
-    
+
               <td>
                 <select [(ngModel)]="event.type">
                   <option *ngFor="let type of outputTypes"
                     [ngValue]="type"> {{type}}</option>
                 </select>
               </td>
-    
-    
+
+
               <td>
                 <input class="form-control"
                   type="text"
@@ -276,7 +276,7 @@
                   altFormat="F j, Y H:i"
                   placeholder="01 Jan 1970 00:00:00 GMT">
               </td>
-    
+
               <td>
                 <input class="form-control"
                   type="text"
@@ -290,7 +290,7 @@
                   altFormat="F j, Y H:i"
                   placeholder="01 Jan 1970 00:00:00 GMT">
               </td>
-    
+
               <td>
                 <button class="btn btn-danger"
                   (click)="outputEvents.splice(index, 1);"
@@ -305,7 +305,7 @@
         <br>
         <br>
   </div>
-     
+
   <div class="modal-footer">
     <button type="button"
       class="btn btn-light"
@@ -415,7 +415,7 @@
     <br>
     <br>
   </div>
-     
+
   </div>
   <div class="modal-footer">
     <button type="button"

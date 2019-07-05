@@ -4,6 +4,7 @@ import { AppComponent } from '../app/app.component';
 import { EventAdderComponent } from '../app/event-adder/event-adder.component';
 import { NewsComponent } from '../app/news-view/new-component';
 import { NavBarComponent } from '../app/nav-bar/nav-bar.component';
+import { AboutViewComponent } from '../app/about-view/about-view.component';
 
 const routes: Routes =
     [
@@ -20,7 +21,11 @@ const routes: Routes =
                 {
                   path: 'news',
                   component: NewsComponent
-              }
+                },
+                {
+                  path: 'about',
+                  component: AboutViewComponent
+                }
             ]
         },
 

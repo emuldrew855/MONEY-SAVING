@@ -5,6 +5,7 @@ import { addDays, isSameDay, isSameMonth } from 'date-fns';
 import { Subject } from 'rxjs';
 
 import { SharedService } from '../shared/shared.service';
+import { stringify } from '@angular/core/src/util';
 
 
 @Component({
@@ -25,6 +26,8 @@ export class CalenderComponent implements OnInit, DoCheck {
     activeDayIsOpen = true;
     @Output() outputDate = new EventEmitter<Date>();
     @Input() events: CalendarEvent[] = [];
+    keysArray:[String, String] =  ['',''];
+
 
     modalData: {
         action: string;
@@ -64,6 +67,7 @@ export class CalenderComponent implements OnInit, DoCheck {
                 if (day.date.getDate() === this.events[i].start.getDate()) {
                     if (this.events[i].color === this.sharedService.colors.green) {
                         totalInput = totalInput + this.events[i].amount;
+                        console.log("Events Key" + this.events[i].type);
                     } else if (this.events[i].color === this.sharedService.colors.red) {
                         totalOutput = totalOutput - this.events[i].amount;
                     }
@@ -82,7 +86,6 @@ export class CalenderComponent implements OnInit, DoCheck {
     dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
         this.viewDate = date;
         this.outputDate.emit(this.viewDate);
-        console.log('Date Clicked: ' + date);
         if (isSameMonth(date, this.viewDate)) {
             if (
                 (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
@@ -95,9 +98,13 @@ export class CalenderComponent implements OnInit, DoCheck {
         }
     }
     constructor(private modal: NgbModal, private sharedService: SharedService) {
+
     }
 
     ngOnInit() {
+      for (let i = 0; i < this.events.length; i++) {
+      }
+
     }
 
     ngDoCheck() {

@@ -2,6 +2,7 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
 import { CalendarEvent } from 'angular-calendar';
+import { ExpenditureType } from '../shared/expendituretype';
 import {
     startOfDay, endOfDay, subDays, addDays,
     endOfMonth, isSameDay, isSameMonth, addHours
@@ -22,7 +23,8 @@ export class EventAdderComponent implements OnInit, DoCheck {
     outputEvents: CalendarEvent[] = [];
     events: CalendarEvent[] = [];
     inputTypes: String[] = ['Work', 'Loan', 'Gift'];
-    outputTypes: String[] = ['Transport', 'Bills', 'Socialising', 'Food', 'Direct Debits', 'Shopping', 'Other'];
+    outputTypes = new Map([['Transport', 'fa fa-bus'], ['Bills', ''], ['Socialising', ''],
+                              ['Food', ''], ['Direct Debits', ''], ['Shopping', ''], ['Other', '']]);
 
     refresh: Subject<any> = new Subject();
 
@@ -54,7 +56,7 @@ export class EventAdderComponent implements OnInit, DoCheck {
             start: this.viewDate,
             end: this.viewDate,
             color: eventColor,
-            type: 'Transport',
+            type: this.outputTypes[0],
             amount: 10,
             draggable: true,
             resizable: {
@@ -79,7 +81,7 @@ export class EventAdderComponent implements OnInit, DoCheck {
             start: this.viewDate,
             end: this.viewDate,
             color: eventColor,
-            type: 'Transport',
+            type: this.outputTypes[0],
             amount: 10,
             draggable: true,
             resizable: {

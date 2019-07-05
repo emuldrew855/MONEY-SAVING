@@ -85,7 +85,7 @@
         </div>
         <div class="modal-body">
           <div>
-            <span class="emp"> Type: </span> {{modalData?.event.type}}
+            <span class="emp"> Type: </span> <p *ngFor="let item of modalData?.event.type | keyvalue" >  {{item.key}} {{item.value}} </p>
             <span class="emp">
               <br> Cost: </span> £ {{modalData?.event.amount}}
             <span class="emp">

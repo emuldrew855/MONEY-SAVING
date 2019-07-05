@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
-import { FirebaseService } from './shared/firebase.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +7,6 @@ import { FirebaseService } from './shared/firebase.service';
 })
 export class AppComponent {
   title = 'Money Saving Application';
-  items: AngularFireList<String>;
   response: string;
 
 

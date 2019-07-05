@@ -257,8 +257,8 @@
 
               <td>
                 <select [(ngModel)]="event.type">
-                  <option *ngFor="let type of outputTypes"
-                    [ngValue]="type"> {{type}}</option>
+                  <option *ngFor="let type of outputTypes | keyvalue"
+                    [ngValue]="type.key"> {{type.key}}</option>
                 </select>
               </td>
 

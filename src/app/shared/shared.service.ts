@@ -29,7 +29,7 @@ export class SharedService {
             start: new Date('September 17, 2018'),
             end: new Date('September 17, 2018'),
             title: 'A 3 day event',
-            type: 'Transport',
+            type: new Map([['Transport', 'fa fa-bus']]),
             amount: 10,
             color: this.colors.red
         },
@@ -37,8 +37,8 @@ export class SharedService {
             id: 2,
             start: new Date('September 10, 2018'),
             end: new Date('September 10, 2018'),
-            title: 'Meal with Lauren',
-            type: 'Socialising',
+            title: 'Meal with Ben',
+            type: new Map([['Transport', 'fa fa-bus']]),
             amount: 10,
             color: this.colors.red
         },
@@ -47,7 +47,7 @@ export class SharedService {
             start: new Date('September 10, 2018'),
             end: new Date('September 10, 2018'),
             title: 'Wednesday Shift',
-            type: 'Money Earnt',
+            type: new Map([['Transport', 'fa fa-bus']]),
             amount: 10,
             color: this.colors.green
         },
@@ -56,7 +56,7 @@ export class SharedService {
             start: new Date('September 9, 2018'),
             end: new Date('September 9, 2018'),
             title: 'Saturday Shift',
-            type: 'Money Earnt',
+            type: new Map([['Transport', 'fa fa-bus']]),
             amount: 10,
             color: this.colors.green
         },

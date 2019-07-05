@@ -3,15 +3,16 @@
       <a href =""  >Money Saving App </a>
     </li>
     <li>
-        <a href="default.asp">Home</a>
+        <a [routerLink]="'eventadder'" routerLinkActive="active">Home</a>
     </li>
     <li>
-        <a href="news.asp">News</a>
+        <a [routerLink]="'news'" routerLinkActive="active">News</a>
     </li>
     <li>
-        <a href="contact.asp">Contact</a>
+        <a href="">Contact</a>
     </li>
     <li>
-        <a href="about.asp">About</a>
+        <a href="">About</a>
     </li>
 </ul>
+<router-outlet></router-outlet>

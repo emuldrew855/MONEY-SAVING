@@ -37,7 +37,7 @@
 
     <!-- Choose Month Code -->
     <div [ngSwitch]="view">
-      <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (beforeViewRender)="beforeMonthViewRender($event)"
+      <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [weekStartsOn]="1" [refresh]="refresh" (beforeViewRender)="beforeMonthViewRender($event)"
         [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)" (eventClicked)="handleEvent('Clicked', $event.event)"
         (eventTimesChanged)="eventTimesChanged($event)" (dayClicked)="clickedDate = $event.day.date" [cellTemplate]="customCellTemplate">
       </mwl-calendar-month-view>

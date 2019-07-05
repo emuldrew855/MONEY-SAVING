@@ -15,6 +15,8 @@ import { SharedService} from '../app/shared/shared.service';
 import { SharedModule } from './shared/shared.module';
 import { EventAdderComponent } from '../app/event-adder/event-adder.component';
 import { NavBarComponent } from '../app/nav-bar/nav-bar.component';
+import { NewsComponent } from '../app/news-view/new-component';
+import { AppRoutingModule } from './app.routes';
 
 import 'flatpickr/dist/flatpickr.css';
 import { FlatpickrModule } from 'angularx-flatpickr';
@@ -30,9 +32,11 @@ import {
     AppComponent,
     CalenderComponent,
     EventAdderComponent,
-    NavBarComponent
+    NavBarComponent,
+    NewsComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     SharedModule,
     BrowserAnimationsModule,

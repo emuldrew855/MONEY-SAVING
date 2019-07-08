@@ -67,7 +67,6 @@ export class CalenderComponent implements OnInit, DoCheck {
                 if (day.date.getDate() === this.events[i].start.getDate()) {
                     if (this.events[i].color === this.sharedService.colors.green) {
                         totalInput = totalInput + this.events[i].amount;
-                        console.log("Events Key" + this.events[i].type);
                     } else if (this.events[i].color === this.sharedService.colors.red) {
                         totalOutput = totalOutput - this.events[i].amount;
                     }
@@ -78,7 +77,6 @@ export class CalenderComponent implements OnInit, DoCheck {
             if (day.date.getDay() === 0) {
                 this.weekTotal = 0;
                 this.findWeekTotal(day);
-                console.log(day.date + ' ' + day.weekCost);
             }
         });
     }
@@ -102,8 +100,6 @@ export class CalenderComponent implements OnInit, DoCheck {
     }
 
     ngOnInit() {
-      for (let i = 0; i < this.events.length; i++) {
-      }
 
     }
 

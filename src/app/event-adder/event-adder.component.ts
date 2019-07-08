@@ -23,12 +23,13 @@ export class EventAdderComponent implements OnInit, DoCheck {
     outputEvents: CalendarEvent[] = [];
     events: CalendarEvent[] = [];
     inputTypes: String[] = ['Work', 'Loan', 'Gift'];
-    outputTypes = new Map([['Transport', 'fa fa-bus'], ['Bills', ''], ['Socialising', ''],
-                              ['Food', ''], ['Direct Debits', ''], ['Shopping', ''], ['Other', '']]);
+    outputTypes:  String[] = ['Transport', 'Bills', 'Socialising', 'Food',  'Direct Debits', 'Shopping', 'Other'];
+    showOutputChart: boolean;
 
     refresh: Subject<any> = new Subject();
 
     constructor(private modal: NgbModal, private sharedService: SharedService, private modalService: NgbModal) {
+        this.showOutputChart = false;
     }
 
     ngOnInit() {
@@ -56,7 +57,7 @@ export class EventAdderComponent implements OnInit, DoCheck {
             start: this.viewDate,
             end: this.viewDate,
             color: eventColor,
-            type: this.outputTypes[0],
+            type: 'Transport',
             amount: 10,
             draggable: true,
             resizable: {
@@ -81,7 +82,7 @@ export class EventAdderComponent implements OnInit, DoCheck {
             start: this.viewDate,
             end: this.viewDate,
             color: eventColor,
-            type: this.outputTypes[0],
+            type: 'Transport',
             amount: 10,
             draggable: true,
             resizable: {
@@ -105,5 +106,10 @@ export class EventAdderComponent implements OnInit, DoCheck {
                 this.refresh.next();
             }
         }
+    }
+
+    showOutput() {
+      console.log('Show output chart' + this.showOutputChart);
+      this.showOutputChart = !this.showOutputChart;
     }
 }

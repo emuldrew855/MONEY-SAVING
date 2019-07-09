@@ -61,4 +61,8 @@ export class SharedService {
             color: this.colors.green
         },
     ];
-}
+
+    outputLabels: string[] = ['Transport', 'Bills', 'Socialising', 'Food',  'Direct Debits', 'Shopping', 'Other'];
+
+    intputLabels: string[] = ['Work', 'Loan', 'Gift'];
+  }

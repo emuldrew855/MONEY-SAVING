@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { CalendarEvent, CalendarEventAction, CalendarMonthViewDay } from 'angular-calendar';
+import { SharedService } from '../shared/shared.service';
 
 
 @Component({
@@ -10,26 +11,32 @@ export class PieChartComponent implements OnChanges {
   // Pie
   @Input() events: CalendarEvent[] = [];
   @Input() showOutput: boolean;
-  pieChartLabels: string[] = [];
-  pieChartData: number[] = [];
-  pieChartType:string = 'pie';
+  outputChartLabels: string[] = this.sharedService.outputLabels;
+  outputChartData: number[] = [0, 0, 0, 0, 0, 0, 0];
+  @Input() showInput: boolean;
+  inputChartLabels: string[] = this.sharedService.intputLabels;
+  inputChartData: number[] = [0, 0, 0, 0, 0, 0, 0];
+  pieChartType: string = 'pie';
+
+  constructor(private sharedService: SharedService) {}
 
   // events
-  public chartClicked(e:any):void {
+  public chartClicked(e: any): void {
     console.log(e);
   }
 
-  public chartHovered(e:any): void {
+  public chartHovered(e: any): void {
     console.log(e);
   }
 
   ngOnChanges() {
-    this.pieChartLabels = [];
-    this.pieChartData = [];
     for (let i = 0; i < this.events.length; i++) {
-        console.log('Events Type: ' + i + ' ' + this.events[i].type);
-        this.pieChartLabels.push(this.events[i].type);
-        this.pieChartData.push(this.events[i].amount);
+      for (let j = 0; j < this.outputChartLabels.length; j++ ) {
+          if (this.outputChartLabels[j].toString() === this.events[i].type.toString()) {
+            this.outputChartData[j] += this.events[i].amount;
+            console.log(this.outputChartLabels[j].toString() + '=' + this.events[i].amount);
+          }
+        }
     }
   }
 }

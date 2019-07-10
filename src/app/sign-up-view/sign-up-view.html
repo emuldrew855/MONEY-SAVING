@@ -1,0 +1,55 @@
+<h1>Create Profile</h1>
+<form >
+    <label>
+      Username:
+      <input type="text" required name="username" [(ngModel)]="newUser.username">
+    </label>
+
+    <label>
+      Password:
+      <input type="text" type="password" id="pass" name="password"
+      minlength="8" required [(ngModel)]="newUser.password">
+    </label>
+
+    <h3>Accounts</h3>
+    <button type="submit" (click)="addNewCard()">Add Card</button>
+  <div *ngFor="let bankAccount of newBanks">
+    <div>
+      <h4>Account {{bankAccount.name}}</h4>
+      <label>
+          Name:
+          <input type="text" [(ngModel)]="bankAccount.name" name="something">
+        </label>
+
+      <label>
+        Bank Account Type:
+        <select name="bankType"  [(ngModel)]="bankAccount.type">
+            <option value="current">Current</option>
+            <option value="savings">Savings</option>
+            <option value="stocks">Stocks</option>
+          </select>
+      </label>
+
+      <label>
+        Amount:
+        <input type="text">
+      </label>
+    </div>
+  </div>
+
+    <div >
+      <h3>Direct Debits</h3> <button>Add Direct Debit</button>
+
+
+        <!-- The repeated alias template -->
+        <label>
+          Alias:
+          <input type="text">
+        </label>
+      </div>
+
+    <button type="submit" (click)="onSubmit()">Submit</button>
+  </form>
+
+  <hr>
+

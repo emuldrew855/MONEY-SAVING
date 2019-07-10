@@ -1,6 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { CalendarEvent } from 'angular-calendar';
+import { UserProfile } from '../shared/userprofile';
 
 @Injectable()
 export class SharedService {
@@ -25,6 +26,8 @@ export class SharedService {
 
     signedIn: boolean = false;
     username: string = '';
+
+    userProfiles: UserProfile[];
 
     inputEvents: CalendarEvent[] = [
       {

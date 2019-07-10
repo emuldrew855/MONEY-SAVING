@@ -11,8 +11,17 @@
     <li>
         <a [routerLink]="'about'" routerLinkActive="active">About</a>
     </li>
-    <li>
+    <li *ngIf=!sharedService.signedIn>
       <a [routerLink]="'login'" routerLinkActive="active">Log In</a>
   </li>
+  <li *ngIf=sharedService.signedIn>
+      <button class="dropbtn">Welcome {{sharedService.username}} <span class="glyphicon glyphicon-log-out"></span></button>
+  </li>
+  <li *ngIf=sharedService.signedIn>
+          <a href="#" (click)="logOut()">Sign Out</a>
+  </li>
+  <li *ngIf=!sharedService.signedIn>
+      <a [routerLink]="'signup'" routerLinkActive="active">Sign Up</a>
+</li>
 </ul>
 <router-outlet></router-outlet>

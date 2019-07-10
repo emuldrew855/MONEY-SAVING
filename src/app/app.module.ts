@@ -1,3 +1,4 @@
+import { SignUpViewComponent } from './sign-up-view/sign-up-view.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -7,6 +8,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app.routes';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { SharedService} from '../app/shared/shared.service';
 import { AppComponent } from './app.component';
@@ -19,6 +21,8 @@ import { PieChartComponent } from '../app/pie-stats/pie-stats.component';
 import { ChartsModule } from 'ng2-charts';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from '../app/log-in-view/log-in.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 import {
   NgbDatepickerModule,
@@ -36,9 +40,14 @@ import {
     NavBarComponent,
     NewsComponent,
     PieChartComponent,
-    LoginComponent
+    LoginComponent,
+    SignUpViewComponent
   ],
   imports: [
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
     ChartsModule,
     MatCardModule,
     MatButtonModule,

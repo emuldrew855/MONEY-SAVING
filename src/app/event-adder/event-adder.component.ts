@@ -2,12 +2,6 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
 import { CalendarEvent } from 'angular-calendar';
-import { ExpenditureType } from '../shared/expendituretype';
-import {
-    startOfDay, endOfDay, subDays, addDays,
-    endOfMonth, isSameDay, isSameMonth, addHours
-} from 'date-fns';
-
 import { SharedService } from '../shared/shared.service';
 
 @Component({

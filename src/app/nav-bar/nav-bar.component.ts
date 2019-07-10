@@ -1,4 +1,5 @@
-import {Component} from '@angular/core'
+import {Component} from '@angular/core';
+import { SharedService } from '../shared/shared.service';
 
 @Component ({
     selector: 'nav-bar',
@@ -7,6 +8,12 @@ import {Component} from '@angular/core'
 })
 
 export class NavBarComponent {
+  constructor(public sharedService: SharedService) { }
+  list = ['sign-out', 'sign-in'];
 
+
+  logOut(): void {
+    this.sharedService.signedIn = false;
+  }
 }
 

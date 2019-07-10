@@ -19,21 +19,23 @@ import { SharedService } from '../shared/shared.service';
 export class EventAdderComponent implements OnInit, DoCheck {
     eventId = 3;
     viewDate: Date = new Date();
-    inputEvents: CalendarEvent[] = [];
-    outputEvents: CalendarEvent[] = [];
+    inputEvents: CalendarEvent[] = this.sharedService.inputEvents;
+    outputEvents: CalendarEvent[] = this.sharedService.outputEvents;
     events: CalendarEvent[] = [];
-    inputTypes: String[] = ['Work', 'Loan', 'Gift'];
-    outputTypes:  String[] = ['Transport', 'Bills', 'Socialising', 'Food',  'Direct Debits', 'Shopping', 'Other'];
+    inputTypes: String[] = this.sharedService.intputLabels;
+    outputTypes:  String[] = this.sharedService.outputLabels;
     showOutputChart: boolean;
+    showInputChart: boolean;
 
     refresh: Subject<any> = new Subject();
 
     constructor(private modal: NgbModal, private sharedService: SharedService, private modalService: NgbModal) {
         this.showOutputChart = false;
+        this.showInputChart = false;
     }
 
     ngOnInit() {
-       this.events = this.sharedService.events;
+       this.events = [];
     }
 
     ngDoCheck() {
@@ -111,5 +113,10 @@ export class EventAdderComponent implements OnInit, DoCheck {
     showOutput() {
       console.log('Show output chart' + this.showOutputChart);
       this.showOutputChart = !this.showOutputChart;
+    }
+
+    showInput() {
+      console.log('Show output chart' + this.showOutputChart);
+      this.showInputChart = !this.showInputChart;
     }
 }

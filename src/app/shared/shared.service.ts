@@ -23,7 +23,49 @@ export class SharedService {
         }
     };
 
-    events: CalendarEvent[] = [
+    signedIn: boolean = false;
+    username: string = '';
+
+    inputEvents: CalendarEvent[] = [
+      {
+          id: 1,
+          start: new Date('September 17, 2018'),
+          end: new Date('September 17, 2018'),
+          title: 'A 3 day event',
+          type: 'Work',
+          amount: 10,
+          color: this.colors.red
+      },
+      {
+          id: 2,
+          start: new Date('September 10, 2018'),
+          end: new Date('September 10, 2018'),
+          title: 'Gruelling shift at the Grouse',
+          type: 'Work',
+          amount: 40,
+          color: this.colors.red
+      },
+      {
+          id: 3,
+          start: new Date('September 10, 2018'),
+          end: new Date('September 10, 2018'),
+          title: 'Wednesday Shift',
+          type: 'Work',
+          amount: 16,
+          color: this.colors.green
+      },
+      {
+          id: 4,
+          start: new Date('September 9, 2018'),
+          end: new Date('September 9, 2018'),
+          title: 'Owed Money',
+          type: 'Loan',
+          amount: 5,
+          color: this.colors.green
+      },
+  ];
+
+    outputEvents: CalendarEvent[] = [
         {
             id: 1,
             start: new Date('September 17, 2018'),

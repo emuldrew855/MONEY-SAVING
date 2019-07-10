@@ -1,0 +1,32 @@
+<div *ngIf="!access">
+  <div class="test">
+      <h1> {{pageTitle}}</h1>
+  </div>
+  <hr>
+  <br>
+  <div class="log-in">
+      <form>
+          <input [ngClass]="{'error': usernameError }" placeholder="username" type="text" name="username" [(ngModel)]="userName">
+          <br>
+          <br>
+          <input [ngClass]="{'error': passwordError }" placeholder="password" type="text" name="password" [(ngModel)]="password" input
+              type="password">
+      </form>
+      <br>
+      <button class="btn-secondary" [disabled]="ngDoCheck()" type="button" (click)="logIn()">
+          Log In
+      </button>
+  </div>
+</div>
+
+<div class="error-message" *ngIf="passwordError">
+  <p> Please enter a valid password</p>
+</div>
+
+<div class="error-message" *ngIf="usernameError">
+  <p> Please enter a valid username</p>
+</div>
+
+<div *ngIf="access" class="test">
+  <h1> Welcome {{userName}} </h1>
+</div>

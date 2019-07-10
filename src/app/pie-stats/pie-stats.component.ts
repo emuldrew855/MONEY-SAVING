@@ -9,13 +9,14 @@ import { SharedService } from '../shared/shared.service';
 })
 export class PieChartComponent implements OnChanges {
   // Pie
-  @Input() events: CalendarEvent[] = [];
+  @Input() inputEvents: CalendarEvent[] = [];
+  @Input() outputEvents: CalendarEvent[] = [];
   @Input() showOutput: boolean;
   outputChartLabels: string[] = this.sharedService.outputLabels;
   outputChartData: number[] = [0, 0, 0, 0, 0, 0, 0];
   @Input() showInput: boolean;
   inputChartLabels: string[] = this.sharedService.intputLabels;
-  inputChartData: number[] = [0, 0, 0, 0, 0, 0, 0];
+  inputChartData: number[] = [0, 0, 0];
   pieChartType: string = 'pie';
 
   constructor(private sharedService: SharedService) {}
@@ -30,11 +31,20 @@ export class PieChartComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    for (let i = 0; i < this.events.length; i++) {
+    for (let i = 0; i < this.outputEvents.length; i++) {
       for (let j = 0; j < this.outputChartLabels.length; j++ ) {
-          if (this.outputChartLabels[j].toString() === this.events[i].type.toString()) {
-            this.outputChartData[j] += this.events[i].amount;
-            console.log(this.outputChartLabels[j].toString() + '=' + this.events[i].amount);
+          if (this.outputChartLabels[j].toString() === this.outputEvents[i].type.toString()) {
+            this.outputChartData[j] += this.outputEvents[i].amount;
+            console.log(this.outputChartLabels[j].toString() + '=' + this.outputEvents[i].amount);
+          }
+        }
+    }
+
+    for (let i = 0; i < this.inputEvents.length; i++) {
+      for (let j = 0; j < this.inputChartLabels.length; j++ ) {
+          if (this.inputChartLabels[j].toString() === this.inputEvents[i].type.toString()) {
+            this.inputChartData[j] += this.inputEvents[i].amount;
+            console.log(this.inputChartLabels[j].toString() + '=' + this.inputEvents[i].amount);
           }
         }
     }

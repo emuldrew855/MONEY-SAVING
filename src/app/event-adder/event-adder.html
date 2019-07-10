@@ -18,13 +18,15 @@
 
   <app-calender-view [events]="events"
   (outputDate)="saveData($event)"> </app-calender-view>
-  <button (click)="showOutput()" mat-button>Show Output Chart</button>
-  <piechart [events]="events" [showOutput]="showOutputChart"> </piechart>
+  <button (click)="showOutput()" class="btn btn-primary" mat-button> {{showOutputChart == false ? 'Show' : 'Hide' }} Output Chart</button> &nbsp;
+  <button (click)="showInput()" class="btn btn-primary" mat-button> {{showInputChart == false ? 'Show' : 'Hide' }}  Input Chart</button>
+  <piechart [outputEvents]="outputEvents" [showOutput]="showOutputChart"> </piechart>
+  <piechart [inputEvents]="inputEvents" [showInput]="showInputChart"> </piechart>
 
   <ng-template #output
   let-modal>
   <div class="modal-header">
-    <h4 class="modal-title">Modal title</h4>
+    <h4 class="modal-title">Add output</h4>
     <button type="button"
       class="close"
       aria-label="Close"
@@ -126,7 +128,7 @@
 <ng-template #input
   let-modal>
   <div class="modal-header">
-    <h4 class="modal-title">Modal title</h4>
+    <h4 class="modal-title">Add Input</h4>
     <button type="button"
       class="close"
       aria-label="Close"

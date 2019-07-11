@@ -1,3 +1,4 @@
+import { UserProfile } from './../shared/userprofile';
 import { Component, DoCheck } from '@angular/core'
 import { SharedService } from '../shared/shared.service';
 
@@ -19,23 +20,29 @@ export class LoginComponent implements DoCheck {
 
     constructor(private sharedService: SharedService){ }
 
-    logIn() : void {
-        if(this.userName != "username" || this.password != "password") {
-            this.displayError = true;
-        }else{
-            this.displayError = false;
-            this.access = true;
-            this.sharedService.signedIn = true;
-            this.sharedService.username = this.userName;
+    logIn(): void {
+      for ( let i = 0; i < this.sharedService.userProfiles.length; i++) {
+        for ( var userProfile of this.sharedService.userProfiles) {
+            if ( userProfile.username !== this.sharedService.userProfiles[i].username ||
+              this.password !== this.sharedService.userProfiles[i].password ) {
+                this.displayError = true;
+            }else {
+                this.displayError = false;
+                this.access = true;
+                this.sharedService.signedIn = true;
+                this.sharedService.username = this.userName;
+                this.sharedService.currentUser = userProfile;
+            }
         }
+    }
 
-        if(this.userName != "username") {
+        if(this.userName !== 'username') {
             this.usernameError = true;
         }else {
             this.usernameError = false;
         }
 
-        if(this.password != "password") {
+        if(this.password !== 'password') {
             this.passwordError = true;
         }else {
             this.passwordError = false;

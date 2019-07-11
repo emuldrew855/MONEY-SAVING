@@ -1,4 +1,4 @@
-
+import { BankAccount } from './bankaccount';
 import { Injectable } from '@angular/core';
 import { CalendarEvent } from 'angular-calendar';
 import { UserProfile } from '../shared/userprofile';
@@ -27,7 +27,21 @@ export class SharedService {
     signedIn: boolean = false;
     username: string = '';
 
-    userProfiles: UserProfile[];
+    currentUser: UserProfile;
+
+    userProfiles: UserProfile[] = [
+        {
+            username: 'emuldrew855',
+            password: 'password',
+            bankAccounts: BankAccount[0] = [
+            {
+              name: 'Barclays',
+              type: 'Current',
+              amount: 90,
+              directDebits: ''
+            }]
+        }
+    ];
 
     inputEvents: CalendarEvent[] = [
       {

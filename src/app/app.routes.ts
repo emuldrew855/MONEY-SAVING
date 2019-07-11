@@ -7,6 +7,7 @@ import { NavBarComponent } from '../app/nav-bar/nav-bar.component';
 import { AboutViewComponent } from '../app/about-view/about-view.component';
 import { LoginComponent } from '../app/log-in-view/log-in.component';
 import { SignUpViewComponent } from './sign-up-view/sign-up-view.component';
+import { ProfileViewComponent } from '../app/profile-view/profile-view.component';
 
 const routes: Routes =
     [
@@ -35,6 +36,10 @@ const routes: Routes =
                 {
                   path: 'signup',
                   component: SignUpViewComponent
+                },
+                {
+                  path: 'profile',
+                  component: ProfileViewComponent
                 }
             ]
         },

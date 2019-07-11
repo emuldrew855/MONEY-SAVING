@@ -1,0 +1,21 @@
+<h2> Bank Details</h2>
+<h3> {{currentUser.username}}</h3>
+<div *ngFor="let bankAccount of currentUser.bankAccounts">
+    <mat-card class="example-card" >
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>Name: {{bankAccount.name}}</mat-card-title>
+          <mat-card-subtitle>Type: {{bankAccount.type}}</mat-card-subtitle>
+        </mat-card-header>
+        <img class ="bank-card" mat-card-image src="../../assets/BankCardVector.png" alt="Bank Card">
+        <mat-card-content>
+          <p>
+              Balance: £{{bankAccount.amount}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>

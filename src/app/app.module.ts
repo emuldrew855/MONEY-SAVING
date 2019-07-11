@@ -23,6 +23,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from '../app/log-in-view/log-in.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { ProfileViewComponent } from '../app/profile-view/profile-view.component';
 
 import {
   NgbDatepickerModule,
@@ -41,7 +42,8 @@ import {
     NewsComponent,
     PieChartComponent,
     LoginComponent,
-    SignUpViewComponent
+    SignUpViewComponent,
+    ProfileViewComponent
   ],
   imports: [
     MatInputModule,

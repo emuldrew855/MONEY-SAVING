@@ -14,12 +14,14 @@ export class SignUpViewComponent {
   newUser: UserProfile;
   newBanks: BankAccount[];
   newBank: BankAccount;
+  userCreated: boolean;
 
   constructor(private sharedService: SharedService) {
     this.newUser = new UserProfile();
     this.newUser.bankAccounts = [];
     this.newBanks = [];
     this.newBank = new BankAccount();
+    this.userCreated = false;
   }
 
   addNewCard() {
@@ -27,11 +29,20 @@ export class SignUpViewComponent {
   }
 
   onSubmit() {
-    // TODO: Use EventEmitter with form value
+    this.userCreated = false;
     for(var newBank of this.newBanks) {
       this.newUser.bankAccounts.push(newBank);
     }
-    console.warn(this.newUser);
+    for(var newUser of this.sharedService.userProfiles) {
+      if (newUser.username === this.newUser.username) {
+        this.userCreated = true;
+      }
+    }
+    if (this.userCreated === false) {
+      this.sharedService.userProfiles.push(this.newUser);
+      console.log(this.newUser);
+      window.alert('User Created!');
+    }
   }
 
 }

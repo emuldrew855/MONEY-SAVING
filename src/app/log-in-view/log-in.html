@@ -29,4 +29,25 @@
 
 <div *ngIf="access" class="test">
   <h1> Welcome {{userName}} </h1>
+
+<div *ngFor="let bankAccount of currentUser.bankAccounts">
+<mat-card class="example-card" width = 200px;>
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <h2> Bank Details</h2>
+      <mat-card-title>Name: {{bankAccount.name}}</mat-card-title>
+      <mat-card-subtitle>Type: {{bankAccount.type}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://banner2.kisspng.com/20180423/yqw/kisspng-credit-card-bank-card-debit-card-money-card-card-vector-material-5ade90b29024b7.7754061515245354745904.jpg" alt="Photo of Martin Lewis">
+    <mat-card-content>
+      <p>
+          Balance: {{bankAccount.amount}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
 </div>

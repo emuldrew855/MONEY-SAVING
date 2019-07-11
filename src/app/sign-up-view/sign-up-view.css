@@ -38,3 +38,14 @@ button:disabled {
   cursor: auto;
 }
 
+#red
+{
+    color: red;
+}
+
+.error {
+color: #D8000C;
+background-color: #FFBABA;
+width: 500px;
+}
+

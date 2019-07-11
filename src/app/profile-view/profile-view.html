@@ -1,5 +1,5 @@
+<h1> {{currentUser.username}}</h1>
 <h2> Bank Details</h2>
-<h3> {{currentUser.username}}</h3>
 <div *ngFor="let bankAccount of currentUser.bankAccounts">
     <mat-card class="example-card" >
         <mat-card-header>
@@ -19,3 +19,7 @@
         </mat-card-actions>
       </mat-card>
     </div>
+
+
+<h2> Recent Transactions</h2>
+<p *ngFor="let event of currentUser.events"> {{event.title}} {{event.amount}}</p>

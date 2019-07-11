@@ -2,6 +2,7 @@ import { UserProfile } from '../shared/UserProfile';
 import { Component} from '@angular/core';
 import { SharedService } from '../shared/shared.service';
 import { BankAccount } from '../shared/bankaccount';
+import { Router } from '@angular/router'
 
 
 @Component({
@@ -16,7 +17,7 @@ export class SignUpViewComponent {
   newBank: BankAccount;
   userCreated: boolean;
 
-  constructor(private sharedService: SharedService) {
+  constructor(private sharedService: SharedService, private router: Router) {
     this.newUser = new UserProfile();
     this.newUser.bankAccounts = [];
     this.newBanks = [];
@@ -26,6 +27,7 @@ export class SignUpViewComponent {
 
   addNewCard() {
     this.newBanks.push(this.newBank);
+    console.log(this.newBanks);
   }
 
   onSubmit() {
@@ -42,6 +44,7 @@ export class SignUpViewComponent {
       this.sharedService.userProfiles.push(this.newUser);
       console.log(this.newUser);
       window.alert('User Created!');
+      this.router.navigate(['./home/login']);
     }
   }
 

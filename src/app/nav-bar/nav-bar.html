@@ -1,18 +1,15 @@
 <ul>
     <li>
-      <a href =""  >Money Saving App </a>
-    </li>
-    <li>
-        <a [routerLink]="'eventadder'" routerLinkActive="active">Home</a>
+        <a [routerLink]="'home'" routerLinkActive="active">Home</a>
     </li>
     <li>
         <a [routerLink]="'news'" routerLinkActive="active">News</a>
     </li>
-    <li>
-        <a [routerLink]="'about'" routerLinkActive="active">About</a>
-    </li>
-    <li *ngIf=!sharedService.signedIn>
+  <!-- <li *ngIf=!sharedService.signedIn>
       <a [routerLink]="'login'" routerLinkActive="active">Log In</a>
+    </li> -->
+  <li *ngIf=sharedService.signedIn>
+      <a [routerLink]="'eventadder'" routerLinkActive="active">Event Adder</a>
   </li>
   <li *ngIf=sharedService.signedIn>
       <a [routerLink]="'profile'" routerLinkActive="active"> Welcome {{sharedService.username}} </a>
@@ -20,8 +17,8 @@
   <li *ngIf=sharedService.signedIn>
           <a href="#" (click)="logOut()">Sign Out</a>
   </li>
-  <li *ngIf=!sharedService.signedIn>
+ <!-- <li *ngIf=!sharedService.signedIn>
       <a [routerLink]="'signup'" routerLinkActive="active">Sign Up</a>
-</li>
+  </li> -->
 </ul>
 <router-outlet></router-outlet>

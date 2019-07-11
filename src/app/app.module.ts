@@ -1,3 +1,4 @@
+import { HomeViewComponent } from './home-view/home-view.component';
 import { SignUpViewComponent } from './sign-up-view/sign-up-view.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -16,7 +17,6 @@ import { CalenderComponent } from './calender-view/calender-component';
 import { EventAdderComponent } from '../app/event-adder/event-adder.component';
 import { NavBarComponent } from '../app/nav-bar/nav-bar.component';
 import { NewsComponent } from '../app/news-view/new-component';
-import { AboutViewComponent } from '../app/about-view/about-view.component';
 import { PieChartComponent } from '../app/pie-stats/pie-stats.component';
 import { ChartsModule } from 'ng2-charts';
 import { FormsModule } from '@angular/forms';
@@ -35,7 +35,7 @@ import {
 @NgModule({
   declarations: [
     AppComponent,
-    AboutViewComponent,
+    HomeViewComponent,
     CalenderComponent,
     EventAdderComponent,
     NavBarComponent,

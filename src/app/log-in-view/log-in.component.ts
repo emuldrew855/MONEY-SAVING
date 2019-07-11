@@ -34,19 +34,7 @@ export class LoginComponent implements DoCheck {
                 this.sharedService.currentUser = userProfile;
             }
         }
-    }
-
-        if(this.userName !== 'username') {
-            this.usernameError = true;
-        }else {
-            this.usernameError = false;
-        }
-
-        if(this.password !== 'password') {
-            this.passwordError = true;
-        }else {
-            this.passwordError = false;
-        }
+      }
     }
 
     ngDoCheck() {

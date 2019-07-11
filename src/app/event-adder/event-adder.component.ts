@@ -66,6 +66,7 @@ export class EventAdderComponent implements OnInit, DoCheck {
             x = i;
         }
         this.events.push(this.inputEvents[x]);
+        this.sharedService.currentUser.events.push(this.inputEvents[x]);
         this.refresh.next();
     }
 
@@ -92,6 +93,7 @@ export class EventAdderComponent implements OnInit, DoCheck {
             x = i;
         }
         this.events.push(this.outputEvents[x]);
+        this.sharedService.currentUser.events.push(this.outputEvents[x]);
         this.refresh.next();
     }
 
@@ -102,6 +104,13 @@ export class EventAdderComponent implements OnInit, DoCheck {
                 this.refresh.next();
             }
         }
+        // For Profile Section
+        for (let i = 0; i < this.sharedService.currentUser.events.length; i++) {
+          if (event.id === this.sharedService.currentUser.events[i].id) {
+              this.sharedService.currentUser.events.splice(i);
+              this.refresh.next();
+          }
+      }
     }
 
     showOutput() {

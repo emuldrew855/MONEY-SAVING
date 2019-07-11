@@ -29,20 +29,6 @@ export class SharedService {
 
     currentUser: UserProfile;
 
-    userProfiles: UserProfile[] = [
-        {
-            username: 'emuldrew855',
-            password: 'password',
-            bankAccounts: BankAccount[0] = [
-            {
-              name: 'Barclays',
-              type: 'Current',
-              amount: 90,
-              directDebits: ''
-            }]
-        }
-    ];
-
     inputEvents: CalendarEvent[] = [
       {
           id: 1,
@@ -124,4 +110,18 @@ export class SharedService {
     outputLabels: string[] = ['Transport', 'Bills', 'Socialising', 'Food',  'Direct Debits', 'Shopping', 'Other'];
 
     intputLabels: string[] = ['Work', 'Loan', 'Gift'];
+
+    userProfiles: UserProfile[] = [
+      {
+          username: 'emuldrew855',
+          password: 'password',
+          bankAccounts: BankAccount[0] = [
+          {
+            name: 'Barclays',
+            type: 'Current',
+            amount: 90,
+            directDebits: ''
+          }]
+      }
+  ];
   }

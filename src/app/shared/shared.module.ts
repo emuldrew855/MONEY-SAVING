@@ -14,6 +14,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { AppRoutingModule } from '../app.routes';
 import { ReactiveFormsModule } from '@angular/forms';
+import { GuardService } from '../shared/guard.service';
 
 @NgModule
     ({
@@ -51,7 +52,7 @@ import { ReactiveFormsModule } from '@angular/forms';
           MatButtonModule,
           AppRoutingModule
                   ],
-        providers: [FirebaseService],
+        providers: [FirebaseService, GuardService],
         bootstrap: []
 
     })

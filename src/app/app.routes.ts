@@ -7,6 +7,7 @@ import { LoginComponent } from '../app/log-in-view/log-in.component';
 import { SignUpViewComponent } from './sign-up-view/sign-up-view.component';
 import { ProfileViewComponent } from '../app/profile-view/profile-view.component';
 import { HomeViewComponent } from './home-view/home-view.component';
+import { GuardService } from '../app/shared/guard.service';
 
 const routes: Routes =
     [
@@ -18,6 +19,7 @@ const routes: Routes =
             children: [
                 {
                   path: 'eventadder',
+                  canActivate: [GuardService],
                   component: EventAdderComponent
                 },
                 {
@@ -38,6 +40,7 @@ const routes: Routes =
                 },
                 {
                   path: 'profile',
+                  canActivate: [GuardService],
                   component: ProfileViewComponent
                 }
             ]

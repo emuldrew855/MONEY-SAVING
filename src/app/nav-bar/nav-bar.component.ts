@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Output, EventEmitter} from '@angular/core';
 import { SharedService } from '../shared/shared.service';
 
 @Component ({
@@ -8,12 +8,20 @@ import { SharedService } from '../shared/shared.service';
 })
 
 export class NavBarComponent {
-  constructor(public sharedService: SharedService) { }
+  sidebarEmit: boolean;
+
+  constructor(public sharedService: SharedService) {
+    this.sidebarEmit = false;
+   }
   list = ['sign-out', 'sign-in'];
 
 
   logOut(): void {
     this.sharedService.signedIn = false;
+  }
+
+  toggleSidenav() {
+    this.sidebarEmit = !this.sidebarEmit;
   }
 }
 

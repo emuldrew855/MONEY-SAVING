@@ -1,7 +1,7 @@
-import { UserProfile } from '../shared/UserProfile';
+import { UserProfile } from '../shared/objects/UserProfile';
 import { Component} from '@angular/core';
 import { SharedService } from '../shared/shared.service';
-import { BankAccount } from '../shared/bankaccount';
+import { BankAccount } from '../shared/objects/bankaccount';
 import { Router } from '@angular/router'
 
 

@@ -3,19 +3,54 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FirebaseService } from './firebase.service';
+import { ChartsModule } from 'ng2-charts';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { CalendarModule } from 'angular-calendar';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { AppRoutingModule } from '../app.routes';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule
     ({
         declarations: [
         ],
         imports: [
+            ReactiveFormsModule,
+            MatFormFieldModule,
+            MatInputModule,
+            ChartsModule,
             CommonModule,
             FormsModule,
-            HttpModule
+            HttpModule,
+            BrowserModule,
+            BrowserAnimationsModule,
+            CalendarModule.forRoot(),
+            NgbModalModule.forRoot(),
+            MatCardModule,
+            MatButtonModule,
+            AppRoutingModule
         ],
-        exports: [CommonModule,
-                    FormsModule,
-                    HttpModule],
+        exports: [
+          ReactiveFormsModule,
+          MatFormFieldModule,
+          MatInputModule,
+          ChartsModule,
+          CommonModule,
+          FormsModule,
+          HttpModule,
+          BrowserModule,
+          BrowserAnimationsModule,
+          CalendarModule,
+          NgbModalModule,
+          MatCardModule,
+          MatButtonModule,
+          AppRoutingModule
+                  ],
         providers: [FirebaseService],
         bootstrap: []
 

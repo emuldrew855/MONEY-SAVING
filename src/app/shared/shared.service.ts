@@ -1,7 +1,7 @@
-import { BankAccount } from './bankaccount';
+import { BankAccount } from './objects/bankaccount';
 import { Injectable } from '@angular/core';
 import { CalendarEvent } from 'angular-calendar';
-import { UserProfile } from '../shared/userprofile';
+import { UserProfile } from '../shared/objects/userprofile';
 
 @Injectable()
 export class SharedService {

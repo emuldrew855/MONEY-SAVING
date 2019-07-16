@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from '../app/app.component';
 import { EventAdderComponent } from '../app/event-adder/event-adder.component';
 import { NewsComponent } from '../app/news-view/new-component';
 import { NavBarComponent } from '../app/nav-bar/nav-bar.component';
@@ -11,7 +10,7 @@ import { HomeViewComponent } from './home-view/home-view.component';
 
 const routes: Routes =
     [
-        { path: '', redirectTo: 'home', pathMatch: 'full' },
+        { path: '', redirectTo: 'home/home', pathMatch: 'full' },
 
         {
             path: 'home',
@@ -43,8 +42,7 @@ const routes: Routes =
                 }
             ]
         },
-
-    ]
+    ];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

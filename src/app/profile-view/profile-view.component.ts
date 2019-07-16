@@ -1,4 +1,4 @@
-import { UserProfile } from './../shared/userprofile';
+import { UserProfile } from './../shared/objects/userprofile';
 import { Component} from '@angular/core';
 import { SharedService } from '../shared/shared.service';
 

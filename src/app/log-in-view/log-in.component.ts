@@ -1,5 +1,5 @@
-import { UserProfile } from './../shared/userprofile';
-import { Component, DoCheck } from '@angular/core'
+import { UserProfile } from './../shared/objects/userprofile';
+import { Component, DoCheck } from '@angular/core';
 import { SharedService } from '../shared/shared.service';
 
 @Component ({

@@ -1,3 +1,4 @@
+import { SharedService } from './../shared/shared.service';
 import { Component} from '@angular/core';
 
 
@@ -8,5 +9,9 @@ import { Component} from '@angular/core';
 })
 
 export class HomeViewComponent {
+
+  constructor(public sharedService: SharedService) {
+
+  }
 
 }

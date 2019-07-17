@@ -1,5 +1,6 @@
 <h1 class="center">Home Page</h1>
-<h2 class="center"> Welcome to the Money-Saving Application</h2>
-<log-in></log-in>
-<p  class="center" *ngIf="!access"> Don't have an account? </p>
-<p  class="center" *ngIf="!access"><a [routerLink]="'signup'" routerLinkActive="active">Sign up here</a></p>
+<log-in *ngIf="!sharedService.signedIn"></log-in>
+<p  class="center" *ngIf="!sharedService.signedIn"> Don't have an account? </p>
+<p  class="center" *ngIf="!sharedService.signedIn"><a [routerLink]="'signup'" routerLinkActive="active">Sign up here</a></p>
+
+<p  class="center" *ngIf="sharedService.signedIn"> Hello {{sharedService.currentUser.username}} </p>

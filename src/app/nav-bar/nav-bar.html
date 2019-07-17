@@ -1,3 +1,4 @@
+<div [class.alternative]="otherTheme">
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <button mat-icon-button>
@@ -9,6 +10,10 @@
     <span class="menu-spacer"></span>
         <a  mat-button  [routerLink]="'home'" routerLinkActive="active">Home</a>
         <a  mat-button  [routerLink]="'news'" routerLinkActive="active">News</a>
+        <mat-slide-toggle
+        (click)="changeTheme()">
+      Slide me!
+    </mat-slide-toggle>
   </mat-toolbar-row>
 </mat-toolbar>
 
@@ -28,3 +33,4 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+</div>

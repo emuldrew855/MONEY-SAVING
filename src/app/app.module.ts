@@ -21,6 +21,7 @@ import {
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatMenuModule } from '@angular/material';
 import { NavigationBarComponent } from './core/components/navigation-bar/navigation-bar.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 
@@ -39,6 +40,7 @@ import { NavigationBarComponent } from './core/components/navigation-bar/navigat
     NavigationBarComponent
   ],
   imports: [
+    MatSlideToggleModule,
     FlexLayoutModule,
     SharedModule,
     LayoutModule,

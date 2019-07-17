@@ -4,11 +4,12 @@ import { SharedService } from '../shared/shared.service';
 @Component ({
     selector: 'nav-bar',
     templateUrl: 'nav-bar.html',
-    styleUrls: ['nav-bar.css']
+    styleUrls: ['../themes.scss']
 })
 
 export class NavBarComponent {
   sidebarEmit: boolean;
+  otherTheme: boolean = false;
 
   constructor(public sharedService: SharedService) {
     this.sidebarEmit = false;
@@ -18,6 +19,10 @@ export class NavBarComponent {
 
   logOut(): void {
     this.sharedService.signedIn = false;
+  }
+
+  changeTheme(): void {
+   this.otherTheme = !this.otherTheme;
   }
 
   toggleSidenav() {

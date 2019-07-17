@@ -15,12 +15,14 @@ import {MatInputModule} from '@angular/material/input';
 import { AppRoutingModule } from '../app.routes';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GuardService } from '../shared/guard.service';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule
     ({
         declarations: [
         ],
         imports: [
+            MatTableModule,
             ReactiveFormsModule,
             MatFormFieldModule,
             MatInputModule,
@@ -37,6 +39,7 @@ import { GuardService } from '../shared/guard.service';
             AppRoutingModule
         ],
         exports: [
+          MatTableModule,
           ReactiveFormsModule,
           MatFormFieldModule,
           MatInputModule,

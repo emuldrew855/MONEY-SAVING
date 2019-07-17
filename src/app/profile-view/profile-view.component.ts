@@ -1,6 +1,7 @@
 import { UserProfile } from './../shared/objects/userprofile';
-import { Component} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../shared/shared.service';
+import { CalendarEvent } from 'angular-calendar';
 
 
 @Component({
@@ -9,9 +10,21 @@ import { SharedService } from '../shared/shared.service';
     styleUrls: ['profile-view.css']
 })
 
-export class ProfileViewComponent {
+export class ProfileViewComponent implements OnInit {
   currentUser: UserProfile;
+  dataSource: CalendarEvent[];
+  displayedColumns: string[] = ['title', 'amount', 'type', 'date'];
+
   constructor(private sharedService: SharedService) {
-    this.currentUser = sharedService.currentUser;
+    this.dataSource = [];
+    this.currentUser = this.sharedService.currentUser;
   }
+
+  ngOnInit(): void {
+    for(let i = 0; i < this.sharedService.currentUser.events.length; i++) {
+      this.dataSource.push(this.sharedService.currentUser.events[i]);
+    }
+    console.log('Data Source' + this.dataSource);
+  }
+
 }

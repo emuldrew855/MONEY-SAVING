@@ -27,7 +27,7 @@ export class SignUpViewComponent {
 
   addNewCard() {
     this.newBanks.push(this.newBank);
-    console.log(this.newBanks);
+    this.newBank = new BankAccount();
   }
 
   onSubmit() {
@@ -42,7 +42,6 @@ export class SignUpViewComponent {
     }
     if (this.userCreated === false) {
       this.sharedService.userProfiles.push(this.newUser);
-      console.log(this.newUser);
       window.alert('User Created!');
       this.router.navigate(['./home/login']);
     }

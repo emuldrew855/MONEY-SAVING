@@ -24,7 +24,12 @@ export class ProfileViewComponent implements OnInit {
     for(let i = 0; i < this.sharedService.currentUser.events.length; i++) {
       this.dataSource.push(this.sharedService.currentUser.events[i]);
     }
+    console.log('Total cost: ' + this.getTotalCost());
     console.log('Data Source' + this.dataSource);
+  }
+
+  getTotalCost() {
+    return this.dataSource.map(t => t.amount).reduce((acc, value) => acc + value, 0);
   }
 
 }

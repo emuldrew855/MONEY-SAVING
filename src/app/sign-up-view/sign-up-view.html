@@ -15,7 +15,7 @@
     <button type="submit" (click)="addNewCard()">Add Card</button>
   <div *ngFor="let bankAccount of newBanks; let i = index">
     <div>
-      <h3> {{i}}. </h3>
+      <h3> {{i+1}}. </h3>
       <h4>Account {{bankAccount.name}}</h4>
       <label>
           Name:
@@ -39,9 +39,43 @@
   </div>
 
     <div>
-      <h3>Direct Debits</h3> <button>Add Direct Debit</button>
+      <h3>Direct Debits</h3>
+      <button (click)="addNewDirectDebit()">Add Direct Debit</button>
     </div>
-<br>
+    <div *ngFor="let directDebit of directDebits; let i = index">
+        <div>
+          <h3> {{i+1}}. </h3>
+          <h4>Debit {{directDebit.name}}</h4>
+          <label>
+              Name:
+              <input type="text" [(ngModel)]="directDebit.name" name="something">
+            </label>
+
+          <label>
+             Type:
+            <select name="bankType"  [(ngModel)]="directDebit.type">
+                <option value="Weekly">Weekly</option>
+                <option value="Monthly">Monthly</option>
+                <option value="Quarterly">Quarterly</option>
+                <option value="Yearly">Yearly</option>
+              </select>
+          </label>
+
+          <label>
+            Amount:
+            <input type="text" name="amount" [(ngModel)]="directDebit.amount">
+          </label>
+
+          <label>
+              Bank Account:
+             <select name="bankType"  [(ngModel)]="directDebit.BankAccount">
+                 <option *ngFor="let bankAccount of newBanks;" value="bankAccount.name">{{bankAccount.name}}</option>
+               </select>
+           </label>
+        </div>
+      </div>
+
+      <br>
     <button type="submit" (click)="onSubmit()">Submit</button>
     <div class="error">
         <p  *ngIf="userCreated === true"

@@ -27,6 +27,10 @@
   <p> Please enter a valid username</p>
 </div>
 
+<div class="error-message" *ngIf="displayError">
+    <p> Please check your username and password</p>
+  </div>
+
 <div *ngIf="access" class="test">
   <h1> Welcome {{userName}} </h1>
 </div>

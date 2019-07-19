@@ -23,6 +23,8 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import { NavigationBarComponent } from './core/components/navigation-bar/navigation-bar.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
 
 
 
@@ -41,6 +43,8 @@ import {MatSelectModule} from '@angular/material/select';
     NavigationBarComponent
   ],
   imports: [
+    MatMomentDateModule,
+    MatDatepickerModule,
     MatSelectModule,
     MatSlideToggleModule,
     FlexLayoutModule,

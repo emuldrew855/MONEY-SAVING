@@ -14,8 +14,8 @@ export class LoginComponent implements DoCheck {
     pageTitle = 'Log In';
     validity: string;
     displayError: boolean;
-    usernameError: boolean;
-    passwordError: boolean;
+    usernameError: boolean= false;
+    passwordError: boolean = false;
     access: boolean;
 
     constructor(private sharedService: SharedService){ }

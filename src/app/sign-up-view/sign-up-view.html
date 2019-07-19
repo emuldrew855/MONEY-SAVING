@@ -15,14 +15,11 @@
     <div *ngFor="let bankAccount of newBanks; let i = index">
       <mat-card>
     <div>
-      <h3> {{i+1}}. </h3>
-      <h4>Account {{bankAccount.name}}</h4>
+      <h4> Account {{i+1}}.{{bankAccount.name}}</h4>
       <mat-form-field class="example-full-width">
           <input type="text" [(ngModel)]="bankAccount.name" name="something" matInput placeholder="Name" value="name">
       </mat-form-field>
-
       <br>
-
       <mat-form-field>
         <mat-label>Bank Account Type</mat-label>
          <mat-select name="bankType"  [(ngModel)]="bankAccount.type">
@@ -41,7 +38,6 @@
   </mat-card>
   </div>
 
-
     <div>
       <h3>Direct Debits</h3>
       <button (click)="addNewDirectDebit()">Add Direct Debit</button>
@@ -49,8 +45,7 @@
     <div *ngFor="let directDebit of directDebits; let i = index">
       <mat-card>
       <div>
-          <h3> {{i+1}}. </h3>
-          <h4>Debit {{directDebit.name}}</h4>
+          <h4>Direct Debit {{i+1}}. {{directDebit.name}}</h4>
           <mat-form-field class="example-full-width">
               <input type="text" [(ngModel)]="directDebit.name" name="something" matInput placeholder="Name" value="name">
           </mat-form-field>
@@ -69,24 +64,19 @@
             <input type="text" name="amount" [(ngModel)]="directDebit.amount" matInput placeholder="Amount" value="amount">
           </mat-form-field>
           <br>
-          <label>
-            Date:
-              <input class="form-control"
-              type="text"
-              mwlFlatpickr
-              name = "date"
-              [(ngModel)]="directDebit.date"
-              dateFormat="Y-m-dTH:i"
-              altFormat="F j, Y H:i"
-              placeholder="01 Jan 1970 00:00:00 GMT">
-          </label>
+          <mat-form-field>
+              <input matInput name="date" [matDatepicker]="picker"  [(ngModel)]="directDebit.date" placeholder="Choose a date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
           <br>
-          <label>
-              Bank Account:
-             <select name="bankType" [(ngModel)]="directDebit.bankAccount.name">
-                 <option *ngFor="let bankAccount of newBanks;" [value]="bankAccount.name">{{bankAccount.name}}</option>
-               </select>
-           </label>
+
+          <mat-form-field>
+              <mat-label> Bank Account </mat-label>
+             <mat-select name="bankType" [(ngModel)]="directDebit.bankAccount.name">
+                 <mat-option *ngFor="let bankAccount of newBanks;" [value]="bankAccount.name">{{bankAccount.name}}</mat-option>
+               </mat-select>
+          </mat-form-field>
         </div>
       </mat-card>
       </div>
@@ -96,11 +86,20 @@
     <div class="error">
         <p  *ngIf="userCreated === true"
             id="red">
-            <i class="fa fa-exclamation-triangle"
-                aria-hidden="true"></i> This username has already been created. Please choose a different name
+            <i class="material-icons">
+                warning
+                </i>This username has already been created. Please choose a different name
+        </p>
+    </div>
+
+    <div class="error" *ngIf="displayError">
+        <p id="red"> <i class="material-icons">
+            warning
+            </i> Please add at least one bank account to sign up
         </p>
     </div>
   </form>
+<br>
 
   <hr>
 

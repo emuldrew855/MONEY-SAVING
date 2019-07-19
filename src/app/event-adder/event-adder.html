@@ -74,34 +74,34 @@
               </td>
 
               <td>
-                <select [(ngModel)]="event.type">
-                  <option *ngFor="let type of outputTypes"
-                    [ngValue]="type"> {{type}}</option>
-                </select>
-              </td>
+                  <select [(ngModel)]="event.type">
+                    <option *ngFor="let type of outputTypes"
+                      [ngValue]="type"> {{type}}</option>
+                  </select>
+                </td>
 
 
-              <td>
-                <input class="form-control"
-                  type="text"
-                  mwlFlatpickr
-                  [(ngModel)]="event.start"
-                  (ngModelChange)="refresh.next()"
-                  dateFormat="Y-m-dTH:i"
-                  altFormat="F j, Y H:i"
-                  placeholder="01 Jan 1970 00:00:00 GMT">
-              </td>
+                <td>
+                  <input class="form-control"
+                    type="text"
+                    mwlFlatpickr
+                    [(ngModel)]="event.start"
+                    (ngModelChange)="refresh.next()"
+                    dateFormat="Y-m-dTH:i"
+                    altFormat="F j, Y H:i"
+                    placeholder="01 Jan 1970 00:00:00 GMT">
+                </td>
 
-              <td>
-                <input class="form-control"
-                  type="text"
-                  mwlFlatpickr
-                  [(ngModel)]="event.end"
-                  (ngModelChange)="refresh.next()"
-                  dateFormat="Y-m-dTH:i"
-                  altFormat="F j, Y H:i"
-                  placeholder="01 Jan 1970 00:00:00 GMT">
-              </td>
+                <td>
+                  <input class="form-control"
+                    type="text"
+                    mwlFlatpickr
+                    [(ngModel)]="event.end"
+                    (ngModelChange)="refresh.next()"
+                    dateFormat="Y-m-dTH:i"
+                    altFormat="F j, Y H:i"
+                    placeholder="01 Jan 1970 00:00:00 GMT">
+                </td>
 
               <td>
                 <button class="btn btn-danger"

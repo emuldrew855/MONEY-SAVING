@@ -23,8 +23,10 @@ export class ProfileViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    for(let i = 0; i < this.sharedService.currentUser.events.length; i++) {
-      this.dataSource.push(this.sharedService.currentUser.events[i]);
+    if (this.sharedService.currentUser.events != null) {
+      for (let i = 0; i < this.sharedService.currentUser.events.length; i++) {
+        this.dataSource.push(this.sharedService.currentUser.events[i]);
+      }
     }
     console.log('Total cost: ' + this.getTotalCost());
     console.log('Data Source' + this.dataSource);

@@ -20,6 +20,7 @@ export class SignUpViewComponent {
   directDebits: DirectDebit[];
   newDirectDebit: DirectDebit;
   userCreated: boolean;
+  displayError: boolean = false;
 
   constructor(private sharedService: SharedService, private router: Router) {
     this.newUser = new UserProfile();
@@ -47,31 +48,37 @@ export class SignUpViewComponent {
 
   onSubmit() {
     this.userCreated = false;
-    for(var newUser of this.sharedService.userProfiles) {
-      if (newUser.username === this.newUser.username) {
-        this.userCreated = true;
-      }
+    this.displayError = false;
+    if (this.newBanks.length < 1) {
+        this.displayError = true;
     }
-    if (this.userCreated === false) {
-      this.sharedService.userProfiles.push(this.newUser);
-      window.alert('User Created!');
-      this.router.navigate(['./home/login']);
-    }
-
-    for (var newDirectDebit of this.directDebits) {
-        console.log(newDirectDebit.bankAccount.name);
-        console.log(newDirectDebit);
-        this.newUser.directDebits.push(newDirectDebit);
-    }
-
-    for (var newBank of this.newBanks) {
-      for (let i = 0; i < this.newUser.directDebits.length; i++) {
-        if (newBank.name === this.newUser.directDebits[i].bankAccount.name) {
-            newBank.directDebits.push(this.newUser.directDebits[i]);
+    if(this.displayError === false) {
+      for(var newUser of this.sharedService.userProfiles) {
+        if (newUser.username === this.newUser.username) {
+          this.userCreated = true;
         }
-        this.newUser.bankAccounts.push(newBank);
       }
-    }
+      if (this.userCreated === false) {
+        this.sharedService.userProfiles.push(this.newUser);
+        window.alert('User Created!');
+        this.router.navigate(['./home/login']);
+      }
+
+      for (var newDirectDebit of this.directDebits) {
+          console.log(newDirectDebit.bankAccount.name);
+          console.log(newDirectDebit);
+          this.newUser.directDebits.push(newDirectDebit);
+      }
+
+      for (var newBank of this.newBanks) {
+        for (let i = 0; i < this.newUser.directDebits.length; i++) {
+          if (newBank.name === this.newUser.directDebits[i].bankAccount.name) {
+              newBank.directDebits.push(this.newUser.directDebits[i]);
+          }
+          this.newUser.bankAccounts.push(newBank);
+        }
+      }
+  }
 }
 
 

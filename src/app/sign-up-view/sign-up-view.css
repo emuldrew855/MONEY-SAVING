@@ -59,4 +59,14 @@ width: 500px;
   width: 30%;
 }
 
+.error-message {
+  color: red;
+  size: 18px;
+  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  display:block;
+  padding-left: 40%;
+}
+
 

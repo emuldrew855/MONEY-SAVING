@@ -1,15 +1,14 @@
 <h1>Create Profile</h1>
 <form >
-    <label>
-      Username:
-      <input type="text" required name="username" [(ngModel)]="newUser.username">
-    </label>
+      <mat-form-field class="example-full-width">
+        <input type="text" required name="username" [(ngModel)]="newUser.username" matInput placeholder="Username" value="username">
+      </mat-form-field>
 
-    <label>
-      Password:
-      <input type="text" type="password" id="pass" name="password"
-      minlength="8" required [(ngModel)]="newUser.password">
-    </label>
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <input type="text" type="password" id="pass" name="password" minlength="8" required [(ngModel)]="newUser.password" matInput placeholder="Password" value="password">
+      </mat-form-field>
 
     <h3>Accounts</h3>
     <button type="submit" (click)="addNewCard()">Add Card</button>
@@ -18,24 +17,26 @@
     <div>
       <h3> {{i+1}}. </h3>
       <h4>Account {{bankAccount.name}}</h4>
-      <label>
-          Name:
-          <input type="text" [(ngModel)]="bankAccount.name" name="something">
-        </label>
+      <mat-form-field class="example-full-width">
+          <input type="text" [(ngModel)]="bankAccount.name" name="something" matInput placeholder="Name" value="name">
+      </mat-form-field>
 
-      <label>
-        Bank Account Type:
-        <select name="bankType"  [(ngModel)]="bankAccount.type">
-            <option value="Current">Current</option>
-            <option value="Savings">Savings</option>
-            <option value="Stocks">Stocks</option>
-          </select>
-      </label>
+      <br>
 
-      <label>
-        Amount:
-        <input type="text" name="amount" [(ngModel)]="bankAccount.amount">
-      </label>
+      <mat-form-field>
+        <mat-label>Bank Account Type</mat-label>
+         <mat-select name="bankType"  [(ngModel)]="bankAccount.type">
+            <mat-option value="Current">Current</mat-option>
+            <mat-option value="Savings">Savings</mat-option>
+            <mat-option value="Stocks">Stocks</mat-option>
+          </mat-select>
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <input type="text" name="amount" [(ngModel)]="bankAccount.amount" matInput placeholder="Amount" value="amount">
+      </mat-form-field>
     </div>
   </mat-card>
   </div>
@@ -50,26 +51,24 @@
       <div>
           <h3> {{i+1}}. </h3>
           <h4>Debit {{directDebit.name}}</h4>
-          <label>
-              Name:
-              <input type="text" [(ngModel)]="directDebit.name" name="something">
-            </label>
-
-          <label>
-             Type:
-            <select name="bankType"  [(ngModel)]="directDebit.type">
-                <option value="Weekly">Weekly</option>
-                <option value="Monthly">Monthly</option>
-                <option value="Quarterly">Quarterly</option>
-                <option value="Yearly">Yearly</option>
-              </select>
-          </label>
-
-          <label>
-            Amount:
-            <input type="text" name="amount" [(ngModel)]="directDebit.amount">
-          </label>
-
+          <mat-form-field class="example-full-width">
+              <input type="text" [(ngModel)]="directDebit.name" name="something" matInput placeholder="Name" value="name">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+              <mat-label>Type</mat-label>
+            <mat-select name="bankType"  [(ngModel)]="directDebit.type">
+                <mat-option value="Weekly">Weekly</mat-option>
+                <mat-option value="Monthly">Monthly</mat-option>
+                <mat-option value="Quarterly">Quarterly</mat-option>
+                <mat-option value="Yearly">Yearly</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+          <mat-form-field class="example-full-width">
+            <input type="text" name="amount" [(ngModel)]="directDebit.amount" matInput placeholder="Amount" value="amount">
+          </mat-form-field>
+          <br>
           <label>
             Date:
               <input class="form-control"
@@ -81,7 +80,7 @@
               altFormat="F j, Y H:i"
               placeholder="01 Jan 1970 00:00:00 GMT">
           </label>
-
+          <br>
           <label>
               Bank Account:
              <select name="bankType" [(ngModel)]="directDebit.bankAccount.name">

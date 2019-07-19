@@ -13,7 +13,8 @@
 
     <h3>Accounts</h3>
     <button type="submit" (click)="addNewCard()">Add Card</button>
-  <div *ngFor="let bankAccount of newBanks; let i = index">
+    <div *ngFor="let bankAccount of newBanks; let i = index">
+      <mat-card>
     <div>
       <h3> {{i+1}}. </h3>
       <h4>Account {{bankAccount.name}}</h4>
@@ -36,14 +37,17 @@
         <input type="text" name="amount" [(ngModel)]="bankAccount.amount">
       </label>
     </div>
+  </mat-card>
   </div>
+
 
     <div>
       <h3>Direct Debits</h3>
       <button (click)="addNewDirectDebit()">Add Direct Debit</button>
     </div>
     <div *ngFor="let directDebit of directDebits; let i = index">
-        <div>
+      <mat-card>
+      <div>
           <h3> {{i+1}}. </h3>
           <h4>Debit {{directDebit.name}}</h4>
           <label>
@@ -67,12 +71,25 @@
           </label>
 
           <label>
+            Date:
+              <input class="form-control"
+              type="text"
+              mwlFlatpickr
+              name = "date"
+              [(ngModel)]="directDebit.date"
+              dateFormat="Y-m-dTH:i"
+              altFormat="F j, Y H:i"
+              placeholder="01 Jan 1970 00:00:00 GMT">
+          </label>
+
+          <label>
               Bank Account:
-             <select name="bankType"  [(ngModel)]="directDebit.BankAccount">
-                 <option *ngFor="let bankAccount of newBanks;" value="bankAccount.name">{{bankAccount.name}}</option>
+             <select name="bankType" [(ngModel)]="directDebit.bankAccount.name">
+                 <option *ngFor="let bankAccount of newBanks;" [value]="bankAccount.name">{{bankAccount.name}}</option>
                </select>
            </label>
         </div>
+      </mat-card>
       </div>
 
       <br>

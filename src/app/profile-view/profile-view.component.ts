@@ -14,10 +14,12 @@ export class ProfileViewComponent implements OnInit {
   currentUser: UserProfile;
   dataSource: CalendarEvent[];
   displayedColumns: string[] = ['title', 'amount', 'type', 'date'];
+  showDirectDebits: boolean;
 
   constructor(private sharedService: SharedService) {
     this.dataSource = [];
     this.currentUser = this.sharedService.currentUser;
+    this.showDirectDebits = false;
   }
 
   ngOnInit(): void {
@@ -30,6 +32,10 @@ export class ProfileViewComponent implements OnInit {
 
   getTotalCost() {
     return this.dataSource.map(t => t.amount).reduce((acc, value) => acc + value, 0);
+  }
+
+  showDebits() {
+    this.showDirectDebits = !this.showDirectDebits;
   }
 
 }

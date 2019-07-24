@@ -1,7 +1,7 @@
 import { HomeViewComponent } from './home-view/home-view.component';
 import { SignUpViewComponent } from './sign-up-view/sign-up-view.component';
 import { SharedModule } from './shared/shared.module';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 
 import { SharedService} from '../app/shared/shared.service';
 import { AppComponent } from './app.component';
@@ -25,7 +25,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
-
+import { AgmCoreModule } from '@agm/core';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 
 @NgModule({
@@ -43,6 +44,10 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
     NavigationBarComponent
   ],
   imports: [
+    AgmCoreModule.forRoot({
+      apiKey: ''
+    }),
+    MDBBootstrapModule,
     MatMomentDateModule,
     MatDatepickerModule,
     MatSelectModule,
@@ -59,6 +64,7 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
   ],
   providers: [SharedService],
   exports: [SharedModule],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { }

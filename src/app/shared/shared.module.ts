@@ -17,12 +17,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { GuardService } from '../shared/guard.service';
 import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule
     ({
         declarations: [
         ],
         imports: [
+            MDBBootstrapModule.forRoot(),
             MatSelectModule,
             MatTableModule,
             ReactiveFormsModule,
@@ -41,6 +43,7 @@ import {MatSelectModule} from '@angular/material/select';
             AppRoutingModule
         ],
         exports: [
+          MDBBootstrapModule,
           MatSelectModule,
           MatTableModule,
           ReactiveFormsModule,

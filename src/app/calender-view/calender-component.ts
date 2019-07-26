@@ -14,7 +14,7 @@ import { SharedService } from '../shared/shared.service';
 })
 
 export class CalenderComponent implements OnInit, DoCheck {
-    @ViewChild('modalContent') modalContent: TemplateRef<any>;
+    @ViewChild('modalContent', {static: true}) modalContent: TemplateRef<any>;
     refresh: Subject<any> = new Subject();
     view = 'month';
     dayTotal = 0;

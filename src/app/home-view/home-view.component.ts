@@ -1,5 +1,5 @@
 import { SharedService } from './../shared/shared.service';
-import { Component} from '@angular/core';
+import { Component, OnChanges} from '@angular/core';
 
 
 @Component({
@@ -13,7 +13,7 @@ export class HomeViewComponent {
   constructor(public sharedService: SharedService) {
 
   }
-
+  showDashboard: boolean = false;
   public map: any = { lat: 51.678418, lng: 7.809007 };
   public chart1Type:string = 'bar';
   public chart2Type:string = 'pie';
@@ -35,6 +35,7 @@ export class HomeViewComponent {
   public chartColors:Array<any> = [
 
   ];
+
 
   public dateOptionsSelect: any[];
   public bulkOptionsSelect: any[];

@@ -13,11 +13,6 @@ import { PieChartComponent } from '../app/pie-stats/pie-stats.component';
 import { LoginComponent } from '../app/log-in-view/log-in.component';
 import { ProfileViewComponent } from '../app/profile-view/profile-view.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
-import {
-  NgbDatepickerModule,
-  NgbTimepickerModule
-} from '@ng-bootstrap/ng-bootstrap';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatMenuModule } from '@angular/material';
 import { NavigationBarComponent } from './core/components/navigation-bar/navigation-bar.component';
@@ -27,10 +22,14 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { AgmCoreModule } from '@agm/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { StatsCardComponent } from '../app/shared/stats-card/stats-card.component';
+import { FooterComponent } from '../app/shared/footer/footer.component';
 
 
 @NgModule({
   declarations: [
+    FooterComponent,
+    StatsCardComponent,
     AppComponent,
     HomeViewComponent,
     CalenderComponent,

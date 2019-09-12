@@ -120,7 +120,7 @@ export class SharedService {
             name: 'Barclays',
             type: 'Current',
             amount: 90
-          }]
-      }
-  ];
+          }],
+        }
+      ]
   }

@@ -58,11 +58,6 @@ export class SignUpViewComponent {
           this.userCreated = true;
         }
       }
-      if (this.userCreated === false) {
-        this.sharedService.userProfiles.push(this.newUser);
-        window.alert('User Created!');
-        this.router.navigate(['./home/login']);
-      }
 
       for (var newDirectDebit of this.directDebits) {
           console.log(newDirectDebit.bankAccount.name);
@@ -77,6 +72,12 @@ export class SignUpViewComponent {
           }
           this.newUser.bankAccounts.push(newBank);
         }
+      }
+
+      if (this.userCreated === false) {
+        this.sharedService.userProfiles.push(this.newUser);
+        window.alert('User Created!');
+        this.router.navigate(['./home/login']);
       }
   }
 }

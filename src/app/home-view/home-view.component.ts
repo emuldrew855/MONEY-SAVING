@@ -1,5 +1,5 @@
 import { SharedService } from './../shared/shared.service';
-import { Component, OnChanges} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 
 @Component({
@@ -8,11 +8,15 @@ import { Component, OnChanges} from '@angular/core';
     styleUrls: ['./home-view.scss']
 })
 
-export class HomeViewComponent {
+export class HomeViewComponent implements OnInit {
+  ngOnInit(): void {
+
+  }
 
   constructor(public sharedService: SharedService) {
 
   }
+
   showDashboard: boolean = false;
   public map: any = { lat: 51.678418, lng: 7.809007 };
   public chart1Type:string = 'bar';
@@ -33,8 +37,8 @@ export class HomeViewComponent {
   public chartLabels: Array<any> = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
 
   public chartColors:Array<any> = [
-
   ];
+
 
 
   public dateOptionsSelect: any[];

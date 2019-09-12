@@ -32,6 +32,7 @@ export class LoginComponent implements DoCheck {
                 this.sharedService.signedIn = true;
                 this.sharedService.username = this.userName;
                 this.sharedService.currentUser = userProfile;
+                console.log(this.sharedService.currentUser.bankAccounts[0]);
             }
         }
       }

@@ -71,6 +71,7 @@ export interface CalendarEvent<MetaType = any> {
     actions?: EventAction[];
     allDay?: boolean;
     cssClass?: string;
+    type: string;
     amount: number;
     resizable?: {
         beforeStart?: boolean;
@@ -203,4 +204,5 @@ export declare enum EventValidationErrorMessage {
     EndPropertyNotDate = "Event `end` property should be a javascript date object. Do `new Date(event.end)` to fix it.",
     EndsBeforeStart = "Event `start` property occurs after the `end`",
 }
-export declare function validateEvents(events: CalendarEvent[], log: (...args: any[]) => void): boolean;"
+export declare function validateEvents(events: CalendarEvent[], log: (...args: any[]) => void): boolean;
+"
